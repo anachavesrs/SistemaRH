@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Q/UX7K7mxJifLFWIc2kh5+hSgNKN39W1QnaHY6QEn7o=",
+  "Source": "RHSystem_webapi",
+  "BasePath": "_content/RHSystem_webapi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
