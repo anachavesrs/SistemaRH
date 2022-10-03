@@ -15,6 +15,7 @@ namespace RHSystem_webapi
 		
 		public DbSet<Funcionario> funcionarios { get; set; } = null!;
         public DbSet<Setor> setores { get; set; } = null!;
+		 public DbSet<Folha> folha { get; set; } = null!;
         
 	}
 
@@ -30,6 +31,8 @@ namespace RHSystem_webapi
 
             
 			var app = builder.Build();
+
+			
 
 
 			
