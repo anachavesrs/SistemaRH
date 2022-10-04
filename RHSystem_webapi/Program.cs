@@ -60,10 +60,7 @@ namespace RHSystem_webapi
 			});
 
 
-			//listar funcionario especifico 
-			app.MapGet("/funcionario/{id}", (BasedeDados basedeDados, int id) => {
-				return basedeDados.funcionarios.Find(id);
-			});
+			
 
 			//deletar funcionario
 			app.MapPost("/deletarf/{id}", (BasedeDados basedeDados, int id) =>
@@ -91,17 +88,18 @@ namespace RHSystem_webapi
 				return basedeDados.setores.ToList();
 			});
 
+			//atualizar setores
 			app.MapPost("/atualizars/{id}", (BasedeDados basedeDados, Setor setorAtualizado, int id) =>
 			{
 				var setor = basedeDados.setores.Find(id);
 				setor.nome_setor = setorAtualizado.nome_setor;
 		
 				basedeDados.SaveChanges();
-				return "usuario atualizado";
+				return "setor atualizado";
 			});
 
 			//deletar setor
-			app.MapDelete("/deletars/{id}", (BasedeDados basedeDados, int id) =>
+			app.MapPost("/deletars/{id}", (BasedeDados basedeDados, int id) =>
 			{
 				var setor = basedeDados.setores.Find(id);
 				basedeDados.Remove(setor);
@@ -115,13 +113,30 @@ namespace RHSystem_webapi
 			// --------------------------------------FOLHA PAGAMENTO----------------------------------------------
 
 
-			//calcula salario
+			//cadastra folha de pagamento
 			//TODO
+			app.MapPost("/cadastrarfolha", (BasedeDados basedeDados, Folha folhap) =>
+			{
+				basedeDados.folha.Add(folhap);
+				basedeDados.SaveChanges();
+				return "Dados para emitir folha enviados! Segue:" + " \n ID FOLHA:" + folhap.id + " \n ID FUNCIONARIO:" + folhap.id_folha_funcionario + " \n ID SETOR:" + folhap.id_folha_setor + " \n DIAS TRABALHADOS:" + folhap.dias_trabalhados;
+			});
+
 
 				
 
-			//mostra funcionario, setor que ele trabalha e salario do mes
-			//TODO
+			//mostra folha de pagamento do funcionario
+			app.MapGet("/mostrarfolha/{id}", (BasedeDados basedeDados, Funcionario funcionarios , Setor setores, int id) => 
+			{
+				var folhap = basedeDados.folha.Find(id);
+
+				if (folhap.id_folha_funcionario == funcionarios.id && folhap.id_folha_setor == funcionarios.id_setor)
+				{
+					
+				}
+
+				
+			});
 
 
 
