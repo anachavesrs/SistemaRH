@@ -7,7 +7,7 @@ namespace RHSystem_webapi
     	public int cpf { get; set; }
 		public string? nome_funcionario { get; set;}
         public char sexo {get; set;}
-         public bool salario_dia {get; set;}
+         public double salario_dia {get; set;}
     	
 
     }

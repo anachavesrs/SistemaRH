@@ -101,9 +101,9 @@ namespace RHSystem_webapi
 			});
 
 			//deletar setor
-			app.MapPost("/deletars/{id}", (BasedeDados basedeDados, int id) =>
+			app.MapDelete("/deletars/{id}", (BasedeDados basedeDados, int id) =>
 			{
-				var setor = basedeDados.funcionarios.Find(id);
+				var setor = basedeDados.setores.Find(id);
 				basedeDados.Remove(setor);
 				basedeDados.SaveChanges();
 				return "setor deletado";
@@ -116,6 +116,28 @@ namespace RHSystem_webapi
 
 
 			//calcula salario
+			//TODO
+
+				
+
+			//mostra funcionario, setor que ele trabalha e salario do mes
+			//TODO
+
+
+
+
+			//mostra quantas mulheres ganham mais que 1000 reais por mês
+			//TODO
+
+
+
+
+			//mostra quantos funcionarios tem no setor de vendas
+			//TODO
+
+
+
+			//listar funcionarios por setor
 
 			app.Run();
 			
