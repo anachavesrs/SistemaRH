@@ -5,9 +5,10 @@ namespace RHSystem_webapi
 	class Folha
     {
         public int id { get; set; }
-        public int id_folha_funcionario {get; set;}
-        public int id_folha_setor {get; set;}
-        public int dias_trabalhados {get; set;}
+        public int idSetor {get; set;}
+        public int idFuncionario {get; set;}
+        public int diasTrabalhados {get; set;}
+         public double salario {get; set;}
     	
     	
 

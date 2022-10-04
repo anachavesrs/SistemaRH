@@ -9,61 +9,61 @@ namespace RHSystem_webapi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "folha",
+                name: "Folha",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    id_folha_funcionario = table.Column<int>(type: "INTEGER", nullable: false),
-                    id_folha_setor = table.Column<int>(type: "INTEGER", nullable: false),
-                    dias_trabalhados = table.Column<int>(type: "INTEGER", nullable: false)
+                    idSetor = table.Column<int>(type: "INTEGER", nullable: false),
+                    idFuncionario = table.Column<int>(type: "INTEGER", nullable: false),
+                    diasTrabalhados = table.Column<int>(type: "INTEGER", nullable: false),
+                    salario = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_folha", x => x.id);
+                    table.PrimaryKey("PK_Folha", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "funcionarios",
+                name: "Funcionario",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    id_setor = table.Column<int>(type: "INTEGER", nullable: false),
-                    cpf = table.Column<int>(type: "INTEGER", nullable: false),
-                    nome_funcionario = table.Column<string>(type: "TEXT", nullable: true),
-                    sexo = table.Column<char>(type: "TEXT", nullable: false),
-                    salario_dia = table.Column<bool>(type: "INTEGER", nullable: false)
+                    nome = table.Column<string>(type: "TEXT", nullable: true),
+                    cpf = table.Column<string>(type: "TEXT", nullable: true),
+                    sexo = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_funcionarios", x => x.id);
+                    table.PrimaryKey("PK_Funcionario", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "setores",
+                name: "Setor",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    nome_setor = table.Column<string>(type: "TEXT", nullable: true)
+                    nome = table.Column<string>(type: "TEXT", nullable: true),
+                    valorDiaTrabalho = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_setores", x => x.id);
+                    table.PrimaryKey("PK_Setor", x => x.id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "folha");
+                name: "Folha");
 
             migrationBuilder.DropTable(
-                name: "funcionarios");
+                name: "Funcionario");
 
             migrationBuilder.DropTable(
-                name: "setores");
+                name: "Setor");
         }
     }
 }
