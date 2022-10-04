@@ -38,55 +38,51 @@ namespace RHSystem_webapi
 			{
 				basedeDados.Funcionario.Add(funcionario);
 				basedeDados.SaveChanges();
-				return "Funcionario adicionado";
+				return "Funcionario adicionado!" + " \n Nome: " + funcionario.nome +  " \n CPF: " + funcionario.cpf + "\n Sexo: " + funcionario.sexo;
 			});
 			
-			// //listar todos os funcionarios
-			// app.MapGet("/funcionarios", (Database basedeDados) => {
-			// 	return basedeDados.funcionarios.ToList();
-			// });
+			//listar todos os funcionarios
+			app.MapGet("/listarfuncionarios", (Database basedeDados) => {
+				return basedeDados.Funcionario.ToList();
+			});
 
 			// //atualizar funcionarios
-			// app.MapPost("/atualizarf/{id}", (Database basedeDados, Funcionario funcionarioAtualizado, int id) =>
-			// {
-			// 	var funcionario = basedeDados.funcionarios.Find(id);
-			// 	funcionario.id_setor = funcionarioAtualizado.id_setor;
-			// 	funcionario.nome_funcionario = funcionarioAtualizado.nome_funcionario;
-			// 	funcionario.cpf = funcionarioAtualizado.cpf;
-			// 	funcionario.sexo = funcionarioAtualizado.sexo;
-			// 	funcionario.salario_dia = funcionarioAtualizado.salario_dia;
-			// 	basedeDados.SaveChanges();
-			// 	return "funcionario atualizado";
-			// });
+			app.MapPost("/atualizarfuncionario/{id}", (Database basedeDados, Funcionario funcionarioAtualizado, int id) =>
+			{
+				var funcionario = basedeDados.Funcionario.Find(id);
+				funcionario.nome = funcionarioAtualizado.nome;
+				funcionario.cpf = funcionarioAtualizado.cpf;
+				funcionario.sexo = funcionarioAtualizado.sexo;
+				basedeDados.SaveChanges();
+				return "funcionario atualizado";
+			});
 
-
-			
 
 			// //deletar funcionario
-			// app.MapPost("/deletarf/{id}", (Database basedeDados, int id) =>
-			// {
-			// 	var funcionario = basedeDados.funcionarios.Find(id);
-			// 	basedeDados.Remove(funcionario);
-			// 	basedeDados.SaveChanges();
-			// 	return "funcionario deletado";
-			// });
+			app.MapPost("/deletarfuncionario/{id}", (Database basedeDados, int id) =>
+			{
+				var funcionario = basedeDados.Funcionario.Find(id);
+				basedeDados.Remove(funcionario);
+				basedeDados.SaveChanges();
+				return "funcionario deletado";
+			});
 
 
 
-			// //------------------------------CRUD SETOR--------------------------------------------------
+			 //------------------------------CRUD SETOR--------------------------------------------------
 			// //cadastrar setor
-			// app.MapPost("/cadastrars", (Database basedeDados, Setor setor) =>
-			// {
-			// 	basedeDados.setores.Add(setor);
-			// 	basedeDados.SaveChanges();
-			// 	return "Setor adicionado";
-			// });
+			app.MapPost("/cadastrarsetor", (Database basedeDados, Setor setor) =>
+			{
+				basedeDados.Setor.Add(setor);
+				basedeDados.SaveChanges();
+				return "Setor adicionado!" + " \n Nome: " + setor.nome +  " \n Valor dia trabalhado:" + setor.valorDiaTrabalho;
+			});
 
 
-			// //listar todos os setores
-			// app.MapGet("/setores", (Database basedeDados) => {
-			// 	return basedeDados.setores.ToList();
-			// });
+			//listar todos os setores
+			app.MapGet("/listarsetores", (Database basedeDados) => {
+				return basedeDados.Setor.ToList();
+			});
 
 			// //atualizar setores
 			// app.MapPost("/atualizars/{id}", (Database basedeDados, Setor setorAtualizado, int id) =>
