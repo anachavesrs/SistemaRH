@@ -84,31 +84,29 @@ namespace RHSystem_webapi
 				return basedeDados.Setor.ToList();
 			});
 
-			// //atualizar setores
-			// app.MapPost("/atualizars/{id}", (Database basedeDados, Setor setorAtualizado, int id) =>
-			// {
-			// 	var setor = basedeDados.setores.Find(id);
-			// 	setor.nome_setor = setorAtualizado.nome_setor;
+			//atualizar setores
+			app.MapPost("/atualizarsetor/{id}", (Database basedeDados, Setor setorAtualizado, int id) =>
+			{
+				var setor = basedeDados.Setor.Find(id);
+				setor.nome = setorAtualizado.nome;
+				setor.valorDiaTrabalho = setorAtualizado.valorDiaTrabalho;
+				basedeDados.SaveChanges();
+				return "setor atualizado";
+			});
+
+			//deletar setor
+			app.MapPost("/deletarsetor/{id}", (Database basedeDados, int id) =>
+			{
+				var setor = basedeDados.Setor.Find(id);
+				basedeDados.Remove(setor);
+				basedeDados.SaveChanges();
+				return "setor deletado";
+			});
+
+
+
+
 		
-			// 	basedeDados.SaveChanges();
-			// 	return "setor atualizado";
-			// });
-
-			// //deletar setor
-			// app.MapPost("/deletars/{id}", (Database basedeDados, int id) =>
-			// {
-			// 	var setor = basedeDados.setores.Find(id);
-			// 	basedeDados.Remove(setor);
-			// 	basedeDados.SaveChanges();
-			// 	return "setor deletado";
-			// });
-
-
-
-
-			// // --------------------------------------FOLHA PAGAMENTO----------------------------------------------
-
-
 			// //cadastra folha de pagamento
 			// //TODO
 			// app.MapPost("/cadastrarfolha", (Database basedeDados, Folha folhap) =>
