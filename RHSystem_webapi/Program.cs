@@ -104,10 +104,9 @@ namespace RHSystem_webapi
 			});
 
 
-			
-			//registra folha de pagamento
-			
+		
 
+			//cadastra folha de pagamento e calcula salário.
 			app.MapPost("/cadastrarfolha", (Database basedeDados, Folha folhap) =>
 			{
 				
@@ -119,7 +118,7 @@ namespace RHSystem_webapi
 
 			});
 
-			//listar todos os funcionarios
+			//lista todas as folhas de pagamento
 			app.MapGet("/listarfolha", (Database basedeDados) => {
 				return basedeDados.Folha.ToList();
 			});
