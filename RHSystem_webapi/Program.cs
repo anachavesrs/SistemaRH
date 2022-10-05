@@ -119,6 +119,9 @@ namespace RHSystem_webapi
 			{
 				var setor = basedeDados.Setor.Find(folhap.idSetor);
 				var salario = setor!.valorDiaTrabalho * folhap.diasTrabalhados;
+				var nomesetor = setor.nome;
+				var funcionario = basedeDados.Funcionario.Find(folhap.idFuncionario);
+				var nomefuncionario = funcionario!.nome;
 				folhap.salario = salario;
 				basedeDados.Folha.Add(folhap);
 				basedeDados.SaveChanges();
@@ -126,7 +129,9 @@ namespace RHSystem_webapi
 				return "Folha de pagamento cadastrada!"
 						+ "\n ID Folha: " + folhap.id
 						+ "\n ID do Setor: " + folhap.idSetor
+						+ "\n Nome do Setor: " + nomesetor
 						+ "\n ID do Funcionário: " + folhap.idFuncionario
+						+ "\n Nome do Funcionário: " + nomefuncionario
 						+ "\n Dias Trabalhados: " + folhap.diasTrabalhados
 						+ "\n Salário final calculado: R$" + folhap.salario;
 			});
