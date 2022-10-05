@@ -145,6 +145,9 @@ namespace RHSystem_webapi
 
 
 			// //listar funcionarios por setor
+			app.MapGet("/listarfuncionariosporsetor", Database basedeDados) => {
+				
+			}
 
 			app.Run();
 			
