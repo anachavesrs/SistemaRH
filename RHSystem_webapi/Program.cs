@@ -148,10 +148,15 @@ namespace RHSystem_webapi
 
 
 			//listar folha de pagamento por id do funcionário
-			//TODO
+			app.MapGet("/listarfolhapagamentoid", (Database basedeDados, Folha idFuncionario) => {
+				return basedeDados.Folha.ToList();
+			});
 
 			// listar folha de pagamento com os salários maiores que 500 reais.
-			//TODO
+			app.MapGet("/listarsalariosmais500"), (Database basedeDados, Folha salario) => {
+				var salario == 500;
+				return basedeDados.Folha.salario.Find();
+			}
 
 			app.Run();
 			
