@@ -89,8 +89,8 @@ namespace RHSystem_webapi
 				return basedeDados.Setor.ToList();
 			});
 
-			//listar setor especifico
-			app.MapGet("/usuario/{id}", (Database baseUsuarios, int id) => {
+			//listar setor especifico ** Verificar
+			app.MapGet("/listarsetor/{id}", (Database baseUsuarios, int id) => {
 				return baseUsuarios.Setor.Find(id);
 			});
 
@@ -114,17 +114,16 @@ namespace RHSystem_webapi
 			});
 
 
-		
-
 			//cadastra folha de pagamento e calcula salário.
 			app.MapPost("/cadastrarfolha", (Database basedeDados, Folha folhap) =>
 			{
-				
 				var setor = basedeDados.Setor.Find(folhap.idSetor);
 				var salario = setor!.valorDiaTrabalho * folhap.diasTrabalhados;
 				folhap.salario = salario;
 				basedeDados.Folha.Add(folhap);
 				basedeDados.SaveChanges();
+
+				return "folha cadastrada!";
 
 			});
 
@@ -132,6 +131,9 @@ namespace RHSystem_webapi
 			app.MapGet("/listarfolha", (Database basedeDados) => {
 				return basedeDados.Folha.ToList();
 			});
+
+
+			//listar folha de pagamento por
 
 
 
