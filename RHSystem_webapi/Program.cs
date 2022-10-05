@@ -104,45 +104,46 @@ namespace RHSystem_webapi
 			});
 
 
+			
+			//registra folha de pagamento
+			
+
+			app.MapPost("/cadastrarfolha", (Database basedeDados, Folha folhap) =>
+			{
+				
+				var setor = basedeDados.Setor.Find(folhap.idSetor);
+				var salario = setor.valorDiaTrabalho * folhap.diasTrabalhados;
+				folhap.salario = salario;
+				basedeDados.Folha.Add(folhap);
+				basedeDados.SaveChanges();
+
+			});
+
+			//listar todos os funcionarios
+			app.MapGet("/listarfolha", (Database basedeDados) => {
+				return basedeDados.Folha.ToList();
+			});
+
+
 
 
 		
-			// //cadastra folha de pagamento
-			// //TODO
-			// app.MapPost("/cadastrarfolha", (Database basedeDados, Folha folhap) =>
-			// {
-			// 	basedeDados.folha.Add(folhap);
-			// 	basedeDados.SaveChanges();
-			// 	return "Dados para emitir folha enviados! Segue:" + " \n ID FOLHA:" + folhap.id + " \n ID FUNCIONARIO:" + folhap.id_folha_funcionario + " \n ID SETOR:" + folhap.id_folha_setor + " \n DIAS TRABALHADOS:" + folhap.dias_trabalhados;
-			// });
 
 
-				
-
-			// //mostra folha de pagamento do funcionario
-			// app.MapGet("/mostrarfolha/{id}", (Database basedeDados, Funcionario funcionarios , Setor setores, int id) => 
-			// {
-			// 	var folhap = basedeDados.folha.Find(id);
-
-			// 	if (folhap.id_folha_funcionario == funcionarios.id && folhap.id_folha_setor == funcionarios.id_setor)
-			// 	{
-					
-			// 	}
-
-				
-			// });
+			
 
 
 
 
-			// //mostra quantas mulheres ganham mais que 1000 reais por mês
-			// //TODO
 
+
+			
 
 
 
 			// //mostra quantos funcionarios tem no setor de vendas
 			// //TODO
+
 
 
 
@@ -152,6 +153,10 @@ namespace RHSystem_webapi
 			
 
         }
+
+
+	
+		
     }
 }
     
