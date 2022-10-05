@@ -136,29 +136,7 @@ namespace RHSystem_webapi
 			//listar folha de pagamento por
 
 
-
-
-		
-
-
-			
-
-
-
-
-
-
-			
-
-
-
-			// //mostra quantos funcionarios tem no setor de vendas
-			// //TODO
-
-
-
-
-			// //listar funcionarios por setor
+			//listar funcionarios por setor
 
 			app.Run();
 			
