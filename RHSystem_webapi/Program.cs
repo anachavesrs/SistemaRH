@@ -15,7 +15,7 @@ namespace RHSystem_webapi
 		
 		public DbSet<Funcionario> Funcionario { get; set; } = null!;
         public DbSet<Setor> Setor { get; set; } = null!;
-		 public DbSet<Folha> Folha { get; set; } = null!;
+		public DbSet<Folha> Folha { get; set; } = null!;
         
 	}
 
@@ -42,15 +42,20 @@ namespace RHSystem_webapi
 			});
 			
 			//listar todos os funcionarios
-			app.MapGet("/listarfuncionarios", (Database basedeDados) => {
+			app.MapPost("/listarfuncionarios", (Database basedeDados) => {
 				return basedeDados.Funcionario.ToList();
+			});
+
+			//listar funcionário especifico ** Verificar 
+			app.MapGet("/listarfuncionario/{id}", (Database baseUsuarios, int id) => {
+				return baseUsuarios.Funcionario.Find(id);
 			});
 
 			// //atualizar funcionarios
 			app.MapPost("/atualizarfuncionario/{id}", (Database basedeDados, Funcionario funcionarioAtualizado, int id) =>
 			{
 				var funcionario = basedeDados.Funcionario.Find(id);
-				funcionario.nome = funcionarioAtualizado.nome;
+				funcionario!.nome = funcionarioAtualizado.nome;
 				funcionario.cpf = funcionarioAtualizado.cpf;
 				funcionario.sexo = funcionarioAtualizado.sexo;
 				basedeDados.SaveChanges();
@@ -84,11 +89,16 @@ namespace RHSystem_webapi
 				return basedeDados.Setor.ToList();
 			});
 
+			//listar setor especifico
+			app.MapGet("/usuario/{id}", (Database baseUsuarios, int id) => {
+				return baseUsuarios.Setor.Find(id);
+			});
+
 			//atualizar setores
 			app.MapPost("/atualizarsetor/{id}", (Database basedeDados, Setor setorAtualizado, int id) =>
 			{
 				var setor = basedeDados.Setor.Find(id);
-				setor.nome = setorAtualizado.nome;
+				setor!.nome = setorAtualizado.nome;
 				setor.valorDiaTrabalho = setorAtualizado.valorDiaTrabalho;
 				basedeDados.SaveChanges();
 				return "setor atualizado";
@@ -111,7 +121,7 @@ namespace RHSystem_webapi
 			{
 				
 				var setor = basedeDados.Setor.Find(folhap.idSetor);
-				var salario = setor.valorDiaTrabalho * folhap.diasTrabalhados;
+				var salario = setor!.valorDiaTrabalho * folhap.diasTrabalhados;
 				folhap.salario = salario;
 				basedeDados.Folha.Add(folhap);
 				basedeDados.SaveChanges();
