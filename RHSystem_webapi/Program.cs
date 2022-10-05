@@ -114,14 +114,17 @@ namespace RHSystem_webapi
 			});
 
 
-			//cadastra folha de pagamento, calcula salário e retorna folha
+			//cadastra folha de pagamento, calcula salário e retorna folha com TODOS os dados
 			app.MapPost("/cadastrarfolha", (Database basedeDados, Folha folhap) =>
 			{
 				var setor = basedeDados.Setor.Find(folhap.idSetor);
 				var salario = setor!.valorDiaTrabalho * folhap.diasTrabalhados;
 				var nomesetor = setor.nome;
+				var valordiatrabalho = setor.valorDiaTrabalho;
+
 				var funcionario = basedeDados.Funcionario.Find(folhap.idFuncionario);
 				var nomefuncionario = funcionario!.nome;
+				var cpffuncionario = funcionario.cpf;
 				folhap.salario = salario;
 				basedeDados.Folha.Add(folhap);
 				basedeDados.SaveChanges();
@@ -130,22 +133,25 @@ namespace RHSystem_webapi
 						+ "\n ID Folha: " + folhap.id
 						+ "\n ID do Setor: " + folhap.idSetor
 						+ "\n Nome do Setor: " + nomesetor
+						+ "\n Valor que o setor paga por dia: R$" + valordiatrabalho
 						+ "\n ID do Funcionário: " + folhap.idFuncionario
 						+ "\n Nome do Funcionário: " + nomefuncionario
+						+ "\n CPF do Funcionário: " + cpffuncionario
 						+ "\n Dias Trabalhados: " + folhap.diasTrabalhados
 						+ "\n Salário final calculado: R$" + folhap.salario;
 			});
 
-			//lista todas as folhas de pagamento
+			//lista todas as folhas de pagamento cadastradas
 			app.MapGet("/listarfolha", (Database basedeDados) => {
 				return basedeDados.Folha.ToList();
 			});
 
 
-			//listar folha de pagamento por
-		
+			//listar folha de pagamento por id do funcionário
+			//TODO
 
-			//listar funcionarios por setor
+			// listar folha de pagamento com os salários maiores que 500 reais.
+			//TODO
 
 			app.Run();
 			
