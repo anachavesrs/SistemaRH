@@ -135,23 +135,11 @@ namespace RHSystem_webapi
 
 
 
-
-		
-
-
-			
-
-
-
-
-
-
-			
-
-
-
 			// //mostra quantos funcionarios tem no setor de vendas
 			// //TODO
+			app.MapGet("/funcionariosvenda", (Database basedeDados) => {
+				var vendedores = teste
+			})
 
 
 
