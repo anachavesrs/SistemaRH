@@ -114,7 +114,7 @@ namespace RHSystem_webapi
 			});
 
 
-			//cadastra folha de pagamento e calcula salário.
+			//cadastra folha de pagamento, calcula salário e retorna folha
 			app.MapPost("/cadastrarfolha", (Database basedeDados, Folha folhap) =>
 			{
 				var setor = basedeDados.Setor.Find(folhap.idSetor);
@@ -123,8 +123,12 @@ namespace RHSystem_webapi
 				basedeDados.Folha.Add(folhap);
 				basedeDados.SaveChanges();
 
-				return "folha cadastrada!";
-
+				return "Folha de pagamento cadastrada!"
+						+ "\n ID Folha: " + folhap.id
+						+ "\n ID do Setor: " + folhap.idSetor
+						+ "\n ID do Funcionário: " + folhap.idFuncionario
+						+ "\n Dias Trabalhados: " + folhap.diasTrabalhados
+						+ "\n Salário final calculado: R$" + folhap.salario;
 			});
 
 			//lista todas as folhas de pagamento
@@ -134,7 +138,7 @@ namespace RHSystem_webapi
 
 
 			//listar folha de pagamento por
-
+		
 
 			//listar funcionarios por setor
 
