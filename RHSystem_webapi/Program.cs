@@ -42,7 +42,7 @@ namespace RHSystem_webapi
 			});
 			
 			//listar todos os funcionarios
-			app.MapPost("/listarfuncionarios", (Database basedeDados) => {
+			app.MapGet("/listarfuncionarios", (Database basedeDados) => {
 				return basedeDados.Funcionario.ToList();
 			});
 
@@ -114,6 +114,10 @@ namespace RHSystem_webapi
 			});
 
 
+
+
+			//------------------------ENTIDADE RELACIONAMNETO - FOLHA ------------------------
+
 			//cadastra folha de pagamento, calcula salário e retorna folha com TODOS os dados
 			app.MapPost("/cadastrarfolha", (Database basedeDados, Folha folhap) =>
 			{
@@ -146,21 +150,43 @@ namespace RHSystem_webapi
 				return basedeDados.Folha.ToList();
 			});
 
-
-			//listar folha de pagamento por id do funcionário
-			app.MapPost("/listarfolhapagamentoid/{idFuncionario}", (Database basedeDados, int idFuncionario) => {
-				return basedeDados.Folha.Find(idFuncionario
-				
-				);
+			app.MapPost("/deletarfolha/{id}", (Database basedeDados, int id) =>
+			{
+				var folha = basedeDados.Folha.Find(id);
+				basedeDados.Remove(folha);
+				basedeDados.SaveChanges();
+				return "folha deletada deletado";
 			});
 
 
-			// listar folha de pagamento com os salários maiores que 500 reais.
-			app.MapGet("/salariomaior", (Database basedeDados, int salario) => {
-			 	var result = basedeDados.Folha.Where((Folha.salario )>= 500);
-				return result;
+
+			//Encontra folha do funcionario com base no ID do funcionário
+			app.MapGet("/listarFolhaFuncionario/{funcId}", (Database baseUsuarios, Database basedeDados, int funcId) => {
 				
-			 });
+				Funcionario newFunc = new Funcionario();
+				newFunc = baseUsuarios.Funcionario.Find(funcId)!;
+
+				foreach(Folha folhaFunc in basedeDados.Folha.ToList()){
+					if(newFunc.id.Equals(folhaFunc.idFuncionario)){
+						return folhaFunc;
+					}
+				}	
+
+				return null;			
+			});
+
+
+			//listar folha de pagamento com os salários maiores que 1500 reais.
+			  app.MapGet("/salariomaior", (Database basedeDados) => {
+
+				var querySalarios =
+            	from folhaFunc in basedeDados.Folha.ToList()
+            	where folhaFunc.salario > 1500
+				select folhaFunc;
+
+			return querySalarios;
+				
+			  });
 
 
 			app.Run();
