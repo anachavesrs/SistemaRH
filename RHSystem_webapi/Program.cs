@@ -155,7 +155,8 @@ namespace RHSystem_webapi
 
 			// listar folha de pagamento com os salários maiores que 500 reais.
 			app.MapGet("/salariomaior", (Database basedeDados, int salario) => {
-			 	basedeDados.Folha.Where(((byte)Folha.salario )>= 500);
+			 	var result = basedeDados.Folha.Where(((byte)Folha.salario )>= 500);
+				return result;
 				
 			 });
 
