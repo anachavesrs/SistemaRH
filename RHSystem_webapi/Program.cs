@@ -148,8 +148,10 @@ namespace RHSystem_webapi
 
 
 			//listar folha de pagamento por id do funcionário
-			app.MapGet("/listarfolhapagamentoid{id}", (Database basedeDados, int idFuncionario) => {
-				return basedeDados.Folha.Find(idFuncionario);
+			app.MapPost("/listarfolhapagamentoid/{idFuncionario}", (Database basedeDados, int idFuncionario) => {
+				return basedeDados.Folha.Find(idFuncionario
+				
+				);
 			});
 
 
@@ -159,6 +161,7 @@ namespace RHSystem_webapi
 				return result;
 				
 			 });
+
 
 			app.Run();
 			
