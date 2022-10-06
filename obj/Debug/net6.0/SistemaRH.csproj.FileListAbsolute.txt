@@ -1,0 +1,5 @@
+/Users/inffus4/Documents/GitHub/SistemaRH/obj/Debug/net6.0/SistemaRH.csproj.AssemblyReference.cache
+/Users/inffus4/Documents/GitHub/SistemaRH/obj/Debug/net6.0/SistemaRH.GeneratedMSBuildEditorConfig.editorconfig
+/Users/inffus4/Documents/GitHub/SistemaRH/obj/Debug/net6.0/SistemaRH.AssemblyInfoInputs.cache
+/Users/inffus4/Documents/GitHub/SistemaRH/obj/Debug/net6.0/SistemaRH.AssemblyInfo.cs
+/Users/inffus4/Documents/GitHub/SistemaRH/obj/Debug/net6.0/SistemaRH.csproj.CoreCompileInputs.cache
