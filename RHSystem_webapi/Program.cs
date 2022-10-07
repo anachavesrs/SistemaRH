@@ -169,6 +169,7 @@ namespace RHSystem_webapi
 				foreach(Folha folhaFunc in basedeDados.Folha.ToList()){
 					if(newFunc.id.Equals(folhaFunc.idFuncionario)){
 						return folhaFunc;
+						//lista para retornar os funcionarios com mais de uma folha
 					}
 				}	
 
@@ -177,11 +178,11 @@ namespace RHSystem_webapi
 
 
 			//listar folha de pagamento com os salários maiores que 1500 reais.
-			  app.MapGet("/salariomaior", (Database basedeDados) => {
+			  app.MapGet("/salariomaior/{maior}", (Database basedeDados, int maior) => {
 
 				var querySalarios =
             	from folhaFunc in basedeDados.Folha.ToList()
-            	where folhaFunc.salario > 1500
+            	where folhaFunc.salario >= maior
 				select folhaFunc;
 
 			return querySalarios;
