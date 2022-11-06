@@ -13,7 +13,7 @@ main {
   height: 100vh;
   height: -webkit-fill-available;
   max-height: 100vh;
-  overflow-x: auto;
+  overflow-x: auto; 
   overflow-y: hidden;
 }
 
@@ -111,6 +111,12 @@ main {
   -webkit-overflow-scrolling: touch;
 }
 
-.contents {
-  align-items: center;
+.side-bar {
+  position: absolute;
+}
+
+/* VIEW */
+.view-tittle {
+  display: flex;
+  justify-content: center;
 }
