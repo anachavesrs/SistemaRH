@@ -111,12 +111,10 @@ main {
   -webkit-overflow-scrolling: touch;
 }
 
-.side-bar {
-  position: absolute;
-}
-
 /* VIEW */
-.view-tittle {
+.view-content {
+  left: 36%;
   display: flex;
-  justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }

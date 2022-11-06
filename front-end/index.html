@@ -30,168 +30,185 @@
     <title>Sistema RH</title>
   </head>
   <body>
-    <div
-      class="flex-shrink-0 p-3 bg-white side-bar"
-      style="width: 280px; height: 100vh"
-    >
-      <div class="header">
-        <span
-          href="/"
-          class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
-        >
-          <span class="fs-5 fw-semibold">SistemaRH</span>
-        </span>
+    <div class="position-relative">
+      <div
+        class="flex-shrink-0 p-3 bg-white side-bar position-absolute top-0 start-"
+        style="width: 280px; height: 100vh"
+      >
+        <div class="header">
+          <span
+            href="/"
+            class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
+          >
+            <span class="fs-5 fw-semibold">SistemaRH</span>
+          </span>
+        </div>
+        <ul class="list-unstyled ps-0">
+          <li class="mb-1">
+            <button
+              class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#home-collapse"
+              aria-expanded="true"
+            >
+              Funcionarios
+            </button>
+            <div class="collapse show" id="home-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Cadastrar funcionario</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Listar funcionario</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Deletar funcionario</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="mb-1">
+            <button
+              class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#dashboard-collapse"
+              aria-expanded="false"
+            >
+              Setores
+            </button>
+            <div class="collapse" id="dashboard-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Cadastrar setor</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Listar setores</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Deletar setor</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="mb-1">
+            <button
+              class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#orders-collapse"
+              aria-expanded="false"
+            >
+              Folha
+            </button>
+            <div class="collapse" id="orders-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Cadastrar folha</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Listar folha</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="border-top my-3"></li>
+          <li class="mb-1">
+            <button
+              class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#account-collapse"
+              aria-expanded="false"
+            >
+              Test
+            </button>
+            <div class="collapse" id="account-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >New...</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Profile</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Settings</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="link-dark d-inline-flex text-decoration-none rounded"
+                    >Sign out</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </div>
-      <ul class="list-unstyled ps-0">
-        <li class="mb-1">
-          <button
-            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse"
-            data-bs-target="#home-collapse"
-            aria-expanded="true"
-          >
-            Funcionarios
-          </button>
-          <div class="collapse show" id="home-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Cadastrar funcionario</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Listar funcionario</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Deletar funcionario</a
-                >
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="mb-1">
-          <button
-            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse"
-            data-bs-target="#dashboard-collapse"
-            aria-expanded="false"
-          >
-            Setores
-          </button>
-          <div class="collapse" id="dashboard-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Cadastrar setor</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Listar setores</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Deletar setor</a
-                >
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="mb-1">
-          <button
-            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse"
-            data-bs-target="#orders-collapse"
-            aria-expanded="false"
-          >
-            Folha
-          </button>
-          <div class="collapse" id="orders-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Cadastrar folha</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Listar folha</a
-                >
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="border-top my-3"></li>
-        <li class="mb-1">
-          <button
-            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse"
-            data-bs-target="#account-collapse"
-            aria-expanded="false"
-          >
-            Test
-          </button>
-          <div class="collapse" id="account-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >New...</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Profile</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Settings</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="link-dark d-inline-flex text-decoration-none rounded"
-                  >Sign out</a
-                >
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul>
     </div>
     <!-- ONDE OS DADOS SERÃO POVOADOS -->
     <section class="main-view">
       <div class="container">
         <div class="row">
-          <div class="view-tittle">
-            <h1>Por favor selecione o serviço desejado</h1>
+          <div class="position-relative">
+            <div class="view-content position-absolute top-50">
+              <strong>PLista funcionarios</strong>
+              <div>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Explicabo reiciendis inventore rem placeat vel ullam excepturi
+                cupiditate corrupti dolores odit. Excepturi autem blanditiis
+                similique commodi dolores libero debitis, exercitationem
+                officia.
+              </div>
+              <div>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore
+                ducimus magnam quod expedita atque itaque asperiores quidem
+                distinctio harum, perspiciatis aut ex cumque id ratione beatae!
+                Totam, iure? Ratione, et.
+              </div>
+            </div>
           </div>
         </div>
       </div>
