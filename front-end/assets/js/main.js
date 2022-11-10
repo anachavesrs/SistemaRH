@@ -9,8 +9,11 @@
   });
 })();
 //Criando formulário de cadastro funcionario
+//Selecionando o elemento com a id cadastroFuncionario dentro da index.html
 $("#cadastroFuncionario").click(function () {
-$(".view-content").html(`<div class="view-content-teste">
+//Selecionando a div com classe view-content dentro do index.html
+//Povoando a div com .html(Função HTML para inserir HTML com JQUERY)
+  $(".view-content").html(`<div class="view-content-teste">
 <h1>Cadastrar Funcionario</h1>
   <form action="Inserir API AQUI" method="post">
     <div class="row formularios align-items-center">
