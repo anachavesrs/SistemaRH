@@ -9,8 +9,8 @@ using RHSystem_webapi;
 
 namespace RHSystem_webapi.Migrations
 {
-    [DbContext(typeof(BasedeDados))]
-    [Migration("20221003215939_InitialCreate")]
+    [DbContext(typeof(Database))]
+    [Migration("20221027220207_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,18 +24,21 @@ namespace RHSystem_webapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("dias_trabalhados")
+                    b.Property<int>("diasTrabalhados")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("id_folha_funcionario")
+                    b.Property<int>("idFuncionario")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("id_folha_setor")
+                    b.Property<int>("idSetor")
                         .HasColumnType("INTEGER");
+
+                    b.Property<double>("salario")
+                        .HasColumnType("REAL");
 
                     b.HasKey("id");
 
-                    b.ToTable("folha");
+                    b.ToTable("Folha");
                 });
 
             modelBuilder.Entity("RHSystem_webapi.Funcionario", b =>
@@ -44,24 +47,18 @@ namespace RHSystem_webapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("cpf")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("id_setor")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("nome_funcionario")
+                    b.Property<string>("cpf")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("salario_dia")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("nome")
+                        .HasColumnType("TEXT");
 
-                    b.Property<char>("sexo")
+                    b.Property<string>("sexo")
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
-                    b.ToTable("funcionarios");
+                    b.ToTable("Funcionario");
                 });
 
             modelBuilder.Entity("RHSystem_webapi.Setor", b =>
@@ -70,12 +67,15 @@ namespace RHSystem_webapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("nome_setor")
+                    b.Property<string>("nome")
                         .HasColumnType("TEXT");
+
+                    b.Property<double>("valorDiaTrabalho")
+                        .HasColumnType("REAL");
 
                     b.HasKey("id");
 
-                    b.ToTable("setores");
+                    b.ToTable("Setor");
                 });
 #pragma warning restore 612, 618
         }
