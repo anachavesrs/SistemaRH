@@ -15,12 +15,12 @@ $("#cadastroFuncionario").click(function () {
 //Povoando a div com .html(Função HTML para inserir HTML com JQUERY)
   $(".view-content").html(`<div class="view-content-teste">
 <h1>Cadastrar Funcionario</h1>
-  <form action="Inserir API AQUI" method="post">
+  <div class="form">
     <div class="row formularios align-items-center">
-      <input type="text" placeholder="Insira o nome aqui" required>
-      <input type="number" placeholder="Insira o cpf aqui" required>
-      <select name="selectSexo">
-        <option selected>Selecione um gênero</option>
+      <input id="nome-funcionario" type="text" placeholder="Insira o nome aqui" required>
+      <input id="cpf-funcionario" type="number" placeholder="Insira o cpf aqui" required>
+      <select id="sexo-funcionario" name="selectSexo">
+        <option value="" selected>Selecione um gênero</option>
         <option value="m">Masculino</option>
         <option value="f">Feminino</option>
       </select>
