@@ -10,7 +10,21 @@
 })();
 
 
-fetch(url + "cadastrarsetor",
+var url = "http://localhost:3000/"
+
+
+function cadastrarFunci()
+{
+let funcionario =
+	{
+		'nome':  document.getElementById('nome-funcionario').value,
+		'cpf':   document.getElementById('cpf-funcionario').value,
+    'sexo':  document.getElementById('sexo-funcionario').value,
+		
+	};
+
+
+fetch(url + "cadastrarfuncionario",
 	{
 		'method': 'POST',
 		'redirect': 'follow',
@@ -19,7 +33,7 @@ fetch(url + "cadastrarsetor",
 			'Content-Type': 'application/json',
 			'Accept': 'application/json'
 		},
-		'body': JSON.stringify(body)
+		'body': JSON.stringify(funcionario)
 	})
 	//checa se requisicao deu certo
 	.then((response) =>
@@ -49,12 +63,7 @@ fetch(url + "cadastrarsetor",
 		alert('Não foi possível efetuar o cadastro! :(')
 	})
 
-
-
-
-
-
-
+}// fim cadastrar funcionario
 
 //Criando formulário de cadastro funcionario
 //Selecionando o elemento com a id cadastroFuncionario dentro da index.html
@@ -74,7 +83,7 @@ $("#cadastroFuncionario").click(function () {
       </select>
     </div>
       <div class="buttonEnviar pt-3">
-        <button type="button" class="btn btn-primary" onclick="cadastrarFunci" id="cadastrarFuncionario">Enviar
+        <button type="button" class="btn btn-primary" onclick="cadastrarFunci()" id="cadastrarFuncionario">Enviar
         </button>
       </div>
   </form>
