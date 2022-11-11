@@ -91,20 +91,9 @@ $("#cadastroFuncionario").click(function () {
 `);
 });
 
-//Criando formulário de cadastro de setor
-$("#cadastroSetor").click(function () {
+$("#listarFuncionario").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
-  <h1>Cadastrar Setor</h1>
-    <div class="form">
-      <div class="row formularios align-items-center">
-        <input id="nome-setor" type="text" placeholder="Insira o setor aqui" required>
-        <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui" required>
-      </div>
-        <div class="buttonEnviar pt-3">
-          <button type="button" class="btn btn-primary" onclick="cadastrarSetor" id="cadastrarSetor">Enviar
-          </button>
-        </div>
-    </form>
+    <h1>oiiiii</h1>
   </div>
   `);
   });
@@ -132,9 +121,70 @@ $("#cadastroFolha").click(function () {
   `);
   });
 
+//Criando formulário de cadastro de setor
+$("#cadastroSetor").click(function () {
+  $(".view-content").html(`<div class="view-content-teste">
+  <h1>Cadastrar Setor</h1>
+    <div class="form">
+      <div class="row formularios align-items-center">
+        <input id="nome-setor" type="text" placeholder="Insira o setor aqui" required>
+        <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui" required>
+      </div>
+        <div class="buttonEnviar pt-3">
+          <button type="button" class="btn btn-primary" onclick="cadastrarSetor" id="cadastrarSetor">Enviar
+          </button>
+        </div>
+    </form>
+  </div>
+  `);
+  });
+  
+
+//Criando formulário de cadastro folha
+$("#cadastroFolha").click(function () {
+  $(".view-content").html(`<div class="view-content-teste">
+  <h1>Cadastrar Folha de Pagamento</h1>
+    <div class="form">
+      <div class="row formularios align-items-center">
+      <select id="select-lista">
+
+      
+      </select>
+
+        <input id="nome-setor" type="text" placeholder="Insira o nome do setor" required>
+        <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui" required>
+      </div>
+        <div class="buttonEnviar pt-3">
+          <button type="button" class="btn btn-primary" id="cadastrarSetor">Enviar
+          </button>
+        </div>
+    </form>
+  </div>
+  `);
+
+ foo()
+
+  });
+
+ function foo()
+ {
+  
+  fetch(url + "listarsetores").then(x=>x.json()).then(setores=> {
+    let divsetor = document.getElementById("select-lista")
+    for(let setor of setores){
+      let optionSetor = document.createElement('option')
+      optionSetor.value = setor.id
+      optionSetor.innerHTML = setor.nome
+      divsetor.appendChild(optionSetor)
+    }
+  })
+ }   
+  
+
   //Função para exibir mensagem ao clicar no botão de enviar
   $('#submitForm').click(function(){
     alert('Enviado com sucesso!')
 
   })
+  
   
