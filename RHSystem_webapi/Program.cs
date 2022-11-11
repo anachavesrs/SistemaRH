@@ -29,8 +29,11 @@ namespace RHSystem_webapi
 			var connectionString = builder.Configuration.GetConnectionString("Database") ?? "Data Source=Database.db";
 			builder.Services.AddSqlite<Database>(connectionString);
 
-            
+            builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
 			var app = builder.Build();
+
+			app.UseCors();
 
 		// --------------------------- CRUD FUNCIONARIO ---------------------------------------------
 		//cadastrar funcionário
@@ -187,14 +190,13 @@ namespace RHSystem_webapi
 
 			return querySalarios;
 				
-			  });
+			});
 
 
-			app.Run();
+			app.Run("http://localhost:3000");
 			
 
         }
-
 
 	
 		

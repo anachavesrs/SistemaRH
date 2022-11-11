@@ -8,6 +8,54 @@
     new bootstrap.Tooltip(tooltipTriggerEl);
   });
 })();
+
+
+fetch(url + "cadastrarsetor",
+	{
+		'method': 'POST',
+		'redirect': 'follow',
+		'headers':
+		{
+			'Content-Type': 'application/json',
+			'Accept': 'application/json'
+		},
+		'body': JSON.stringify(body)
+	})
+	//checa se requisicao deu certo
+	.then((response) =>
+	{
+		if(response.ok)
+		{
+			return response.text()
+		}
+		else
+		{
+			return response.text().then((text) =>
+			{
+				throw new Error(text)
+			})
+		}
+	})
+	//trata resposta
+	.then((output) =>
+	{
+		console.log(output)
+		alert('Cadastro efetuado! :D')
+	})
+	//trata erro
+	.catch((error) =>
+	{
+		console.log(error)
+		alert('Não foi possível efetuar o cadastro! :(')
+	})
+
+
+
+
+
+
+
+
 //Criando formulário de cadastro funcionario
 //Selecionando o elemento com a id cadastroFuncionario dentro da index.html
 $("#cadastroFuncionario").click(function () {
@@ -26,7 +74,7 @@ $("#cadastroFuncionario").click(function () {
       </select>
     </div>
       <div class="buttonEnviar pt-3">
-        <button type="button" class="btn btn-primary" id="submitForm">Enviar
+        <button type="button" class="btn btn-primary" onclick="cadastrarFunci" id="cadastrarFuncionario">Enviar
         </button>
       </div>
   </form>
@@ -38,16 +86,15 @@ $("#cadastroFuncionario").click(function () {
 $("#cadastroSetor").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
   <h1>Cadastrar Setor</h1>
-    <form action="Inserir API AQUI" method="post">
+    <div class="form">
       <div class="row formularios align-items-center">
-        <input type="text" placeholder="Insira o nome aqui" required>
-        <input type="number" placeholder="Insira o cpf aqui" required>
-        <select name="selectSexo">
-          <option selected>Selecione um gênero</option>
-          <option value="m">Masculino</option>
-          <option value="f">Feminino</option>
-        </select>
+        <input id="nome-setor" type="text" placeholder="Insira o setor aqui" required>
+        <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui" required>
       </div>
+        <div class="buttonEnviar pt-3">
+          <button type="button" class="btn btn-primary" onclick="cadastrarSetor" id="cadastrarSetor">Enviar
+          </button>
+        </div>
     </form>
   </div>
   `);
@@ -57,17 +104,20 @@ $("#cadastroSetor").click(function () {
 //Criando formulário de cadastro folha
 $("#cadastroFolha").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
-  <h1>Cadastrar Folha</h1>
-    <form action="Inserir API AQUI" method="post">
+  <h1>Cadastrar Folha de Pagamento</h1>
+    <div class="form">
       <div class="row formularios align-items-center">
-        <input type="text" placeholder="Insira o nome aqui" required>
-        <input type="number" placeholder="Insira o cpf aqui" required>
-        <select name="selectSexo">
-          <option selected>Selecione um gênero</option>
-          <option value="m">Masculino</option>
-          <option value="f">Feminino</option>
-        </select>
+      <select id="select-lista">
+      
+      </select>
+
+        <input id="nome-setor" type="text" placeholder="Insira o nome do setor" required>
+        <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui" required>
       </div>
+        <div class="buttonEnviar pt-3">
+          <button type="button" class="btn btn-primary" id="cadastrarSetor">Enviar
+          </button>
+        </div>
     </form>
   </div>
   `);
@@ -76,5 +126,6 @@ $("#cadastroFolha").click(function () {
   //Função para exibir mensagem ao clicar no botão de enviar
   $('#submitForm').click(function(){
     alert('Enviado com sucesso!')
+
   })
   

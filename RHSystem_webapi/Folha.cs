@@ -8,7 +8,7 @@ namespace RHSystem_webapi
         public int idSetor {get; set;}
         public int idFuncionario {get; set;}
         public int diasTrabalhados {get; set;}
-         public double salario {get; set;}
+        public double salario {get; set;}
     	
     	
 
