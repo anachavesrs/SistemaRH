@@ -180,10 +180,8 @@ $("#cadastroSetor").click(function () {
       'dias':          document.getElementById('dias-trabalhados').value,
     };
 
-    console.log(setor)
-    console.log(funcionario)
-    console.log(dias)
-  
+    console.log(folha)
+    
   
   // fetch(url + "cadastrarfolha",
   //   {
