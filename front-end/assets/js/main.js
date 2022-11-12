@@ -146,7 +146,7 @@ $("#cadastroFolha").click(function () {
   <h1>Cadastrar Folha de Pagamento</h1>
     <div class="form">
       <div class="row formularios align-items-center">
-      <select id="select-lista">
+      <select id="select-lista" placeholder="Selecione o setor">
 
       
       </select>
