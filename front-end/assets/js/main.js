@@ -97,29 +97,58 @@ $("#listarFuncionario").click(function () {
   </div>
   `);
   });
+
+
+function cadastrarSetor()
+{
+let setor =
+	{
+		'nome':  document.getElementById('nome-setor').value,
+		'valor':   document.getElementById('valor-dia').value,
+	};
+
+
+fetch(url + "cadastrarsetor",
+	{
+		'method': 'POST',
+		'redirect': 'follow',
+		'headers':
+		{
+			'Content-Type': 'application/json',
+			'Accept': 'application/json'
+		},
+		'body': JSON.stringify(setor)
+	})
+	//checa se requisicao deu certo
+	.then((response) =>
+	{
+		if(response.ok)
+		{
+			return response.text()
+		}
+		else
+		{
+			return response.text().then((text) =>
+			{
+				throw new Error(text)
+			})
+		}
+	})
+	//trata resposta
+	.then((output) =>
+	{
+		console.log(output)
+		alert('Cadastro efetuado! :D')
+	})
+	//trata erro
+	.catch((error) =>
+	{
+		console.log(error)
+		alert('Não foi possível efetuar o cadastro! :(')
+	})
+
+}// fim cadastrar setor
   
-
-//Criando formulário de cadastro folha
-$("#cadastroFolha").click(function () {
-  $(".view-content").html(`<div class="view-content-teste">
-  <h1>Cadastrar Folha de Pagamento</h1>
-    <div class="form">
-      <div class="row formularios align-items-center">
-      <select id="select-lista">
-      
-      </select>
-
-        <input id="nome-setor" type="text" placeholder="Insira o nome do setor" required>
-        <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui" required>
-      </div>
-        <div class="buttonEnviar pt-3">
-          <button type="button" class="btn btn-primary" id="cadastrarSetor">Enviar
-          </button>
-        </div>
-    </form>
-  </div>
-  `);
-  });
 
 //Criando formulário de cadastro de setor
 $("#cadastroSetor").click(function () {
@@ -127,18 +156,72 @@ $("#cadastroSetor").click(function () {
   <h1>Cadastrar Setor</h1>
     <div class="form">
       <div class="row formularios align-items-center">
-        <input id="nome-setor" type="text" placeholder="Insira o setor aqui" required>
-        <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui" required>
+        <input id="nome-setor" type="text" placeholder="Insira o setor aqui">
+        <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui">
       </div>
         <div class="buttonEnviar pt-3">
-          <button type="button" class="btn btn-primary" onclick="cadastrarSetor" id="cadastrarSetor">Enviar
+          <button type="button" class="btn btn-primary" onclick="cadastrarSetor()" id="cadastrarSetor">Cadastrar
           </button>
         </div>
     </form>
   </div>
   `);
   });
+
+
   
+  
+  function cadastrarFolha()
+  {
+  let folha =
+    {
+      'setor':         document.getElementById('setor.id').value,
+      'funcionario':   document.getElementById('funcionario.id').value,
+      'dias':          document.getElementById('dias-trabalhados').value,
+    };
+  
+  
+  fetch(url + "cadastrarfolha",
+    {
+      'method': 'POST',
+      'redirect': 'follow',
+      'headers':
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      'body': JSON.stringify(folha)
+    })
+    //checa se requisicao deu certo
+    .then((response) =>
+    {
+      if(response.ok)
+      {
+        return response.text()
+      }
+      else
+      {
+        return response.text().then((text) =>
+        {
+          throw new Error(text)
+        })
+      }
+    })
+    //trata resposta
+    .then((output) =>
+    {
+      console.log(output)
+      alert('Cadastro efetuado! :D')
+    })
+    //trata erro
+    .catch((error) =>
+    {
+      console.log(error)
+      alert('Não foi possível efetuar o cadastro! :(')
+    })
+  
+  }// fim cadastrar setor
+
 
 //Criando formulário de cadastro folha
 $("#cadastroFolha").click(function () {
@@ -146,36 +229,55 @@ $("#cadastroFolha").click(function () {
   <h1>Cadastrar Folha de Pagamento</h1>
     <div class="form">
       <div class="row formularios align-items-center">
-      <select id="select-lista" placeholder="Selecione o setor">
-
       
+      
+      <select id="select-setor">
       </select>
 
-        <input id="nome-setor" type="text" placeholder="Insira o nome do setor" required>
-        <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui" required>
+      
+      <select id="select-funcionario">
+      </select>
+
+      <input id="dias-trabalhados" type="number">
+
       </div>
         <div class="buttonEnviar pt-3">
-          <button type="button" class="btn btn-primary" id="cadastrarSetor">Enviar
+          <button type="button" class="btn btn-primary" onclick="cadastrarFolha()">Cadastrar
           </button>
         </div>
-    </form>
+    </div>
   </div>
   `);
 
- foo()
+  selectSetor()
+  selectFuncionario()
 
   });
 
- function foo()
+ function selectSetor()
  {
   
   fetch(url + "listarsetores").then(x=>x.json()).then(setores=> {
-    let divsetor = document.getElementById("select-lista")
+    let divsetor = document.getElementById("select-setor")
     for(let setor of setores){
       let optionSetor = document.createElement('option')
       optionSetor.value = setor.id
       optionSetor.innerHTML = setor.nome
       divsetor.appendChild(optionSetor)
+    }
+  })
+ }   
+
+ function selectFuncionario()
+ {
+  
+  fetch(url + "listarfuncionarios").then(x=>x.json()).then(funcionarios=> {
+    let divfuncionario = document.getElementById("select-funcionario")
+    for(let funcionario of funcionarios){
+      let optionFuncionario = document.createElement('option')
+      optionFuncionario.value = funcionario.id
+      optionFuncionario.innerHTML = funcionario.nome
+      divfuncionario.appendChild(optionFuncionario)
     }
   })
  }   
