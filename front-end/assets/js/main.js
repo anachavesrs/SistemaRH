@@ -219,57 +219,48 @@ $("#cadastroSetor").click(function () {
   function listarSetores()
 {
 	//da um GET no endpoint "usuarios"
-	fetch(url + 'listarfuncionarios')
+	fetch(url + 'listarsetores')
 	.then(response => response.json())
-	.then((funcionarios) =>
+	.then((setores) =>
 	{
 		//pega div que vai conter a lista de usuarios
-		let listaFuncionarios = document.getElementById('lista-funcionarios')
+		let listaSetores = document.getElementById('lista-setores')
 		
 
 		//preenche div com usuarios recebidos do GET
-		for(let funcionario of funcionarios)
+		for(let setor of setores)
 		{
 			//cria div para as informacoes de um usuario
-			let divfuncionario = document.createElement('div')
+			let divSetor = document.createElement('div')
 		
 			
 			let divNome = document.createElement('input')
-			divNome.placeholder = 'Nome Completo'
-			divNome.value = funcionario.nome
-			divfuncionario.appendChild(divNome)
+			divNome.placeholder = 'Nome Setor'
+			divNome.value = setor.nome
+			divSetor.appendChild(divNome)
 			
 	
-			let divCpf = document.createElement('input')
-			divCpf.placeholder = 'CPF'
-			divCpf.value = funcionario.cpf
-			divfuncionario.appendChild(divCpf)
+			let divValorDia = document.createElement('input')
+			divValorDia.placeholder = 'CPF'
+			divCpdivValorDiaf.value = setor.cpf
+			divSetor.appendChild(divValorDia)
 
-      let divSexo = document.createElement('input')
-			divSexo.placeholder = 'Sexo'
-			divSexo.value = funcionario.sexo
-			divfuncionario.appendChild(divSexo)
-			
 			//insere a div do usuario na div com a lista de usuarios
-			listaFuncionarios.appendChild(divfuncionario)
+			listaSetores.appendChild(divSetor)
 		}
 	})
 }
 
-$("#listarFuncionario").click(function () {
+$("#listarSetores").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
   <div class="buttonEnviar pt-3">
-        <button type="button" class="btn btn-primary" onclick="listarSetores()">Listar Funcionários
+        <button type="button" class="btn btn-primary" onclick="listarSetores()">Listar Setores
         </button>
   </div>
-     <div id="lista-funcionarios"></div>
+     <div id="lista-setores"></div>
   </div>
   `);
   });
-
-
-
-  
   
   function cadastrarFolha()
   {
