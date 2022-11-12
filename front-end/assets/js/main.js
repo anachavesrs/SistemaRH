@@ -117,12 +117,12 @@ function listarFunci()
 	
 			let divCpf = document.createElement('input')
 			divCpf.placeholder = 'CPF'
-			divCpf.value = funcionario.email
+			divCpf.value = funcionario.cpf
 			divfuncionario.appendChild(divCpf)
 
       let divSexo = document.createElement('input')
 			divSexo.placeholder = 'Sexo'
-			divSexo.value = funcionario.email
+			divSexo.value = funcionario.sexo
 			divfuncionario.appendChild(divSexo)
 			
 			//insere a div do usuario na div com a lista de usuarios
@@ -130,7 +130,6 @@ function listarFunci()
 		}
 	})
 }
-
 
 $("#listarFuncionario").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
@@ -215,6 +214,59 @@ $("#cadastroSetor").click(function () {
   </div>
   `);
   });
+
+
+  function listarSetores()
+{
+	//da um GET no endpoint "usuarios"
+	fetch(url + 'listarfuncionarios')
+	.then(response => response.json())
+	.then((funcionarios) =>
+	{
+		//pega div que vai conter a lista de usuarios
+		let listaFuncionarios = document.getElementById('lista-funcionarios')
+		
+
+		//preenche div com usuarios recebidos do GET
+		for(let funcionario of funcionarios)
+		{
+			//cria div para as informacoes de um usuario
+			let divfuncionario = document.createElement('div')
+		
+			
+			let divNome = document.createElement('input')
+			divNome.placeholder = 'Nome Completo'
+			divNome.value = funcionario.nome
+			divfuncionario.appendChild(divNome)
+			
+	
+			let divCpf = document.createElement('input')
+			divCpf.placeholder = 'CPF'
+			divCpf.value = funcionario.cpf
+			divfuncionario.appendChild(divCpf)
+
+      let divSexo = document.createElement('input')
+			divSexo.placeholder = 'Sexo'
+			divSexo.value = funcionario.sexo
+			divfuncionario.appendChild(divSexo)
+			
+			//insere a div do usuario na div com a lista de usuarios
+			listaFuncionarios.appendChild(divfuncionario)
+		}
+	})
+}
+
+$("#listarFuncionario").click(function () {
+  $(".view-content").html(`<div class="view-content-teste">
+  <div class="buttonEnviar pt-3">
+        <button type="button" class="btn btn-primary" onclick="listarSetores()">Listar Funcionários
+        </button>
+  </div>
+     <div id="lista-funcionarios"></div>
+  </div>
+  `);
+  });
+
 
 
   
