@@ -175,52 +175,56 @@ $("#cadastroSetor").click(function () {
   {
   let folha =
     {
-      'setor':         document.getElementById('setor.id').value,
-      'funcionario':   document.getElementById('funcionario.id').value,
+      'setor':         document.getElementById('option-setor').value,
+      'funcionario':   document.getElementById('option-funcionario').value,
       'dias':          document.getElementById('dias-trabalhados').value,
     };
+
+    console.log(setor)
+    console.log(funcionario)
+    console.log(dias)
   
   
-  fetch(url + "cadastrarfolha",
-    {
-      'method': 'POST',
-      'redirect': 'follow',
-      'headers':
-      {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      'body': JSON.stringify(folha)
-    })
-    //checa se requisicao deu certo
-    .then((response) =>
-    {
-      if(response.ok)
-      {
-        return response.text()
-      }
-      else
-      {
-        return response.text().then((text) =>
-        {
-          throw new Error(text)
-        })
-      }
-    })
-    //trata resposta
-    .then((output) =>
-    {
-      console.log(output)
-      alert('Cadastro efetuado! :D')
-    })
-    //trata erro
-    .catch((error) =>
-    {
-      console.log(error)
-      alert('Não foi possível efetuar o cadastro! :(')
-    })
+  // fetch(url + "cadastrarfolha",
+  //   {
+  //     'method': 'POST',
+  //     'redirect': 'follow',
+  //     'headers':
+  //     {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //     },
+  //     'body': JSON.stringify(folha)
+  //   })
+  //   //checa se requisicao deu certo
+  //   .then((response) =>
+  //   {
+  //     if(response.ok)
+  //     {
+  //       return response.text()
+  //     }
+  //     else
+  //     {
+  //       return response.text().then((text) =>
+  //       {
+  //         throw new Error(text)
+  //       })
+  //     }
+  //   })
+  //   //trata resposta
+  //   .then((output) =>
+  //   {
+  //     console.log(output)
+  //     alert('Cadastro efetuado! :D')
+  //   })
+  //   //trata erro
+  //   .catch((error) =>
+  //   {
+  //     console.log(error)
+  //     alert('Não foi possível efetuar o cadastro! :(')
+  //   })
   
-  }// fim cadastrar setor
+ }// fim cadastrar folha
 
 
 //Criando formulário de cadastro folha
@@ -261,6 +265,7 @@ $("#cadastroFolha").click(function () {
     let divsetor = document.getElementById("select-setor")
     for(let setor of setores){
       let optionSetor = document.createElement('option')
+      optionSetor.setAttribute('id', 'option-setor')
       optionSetor.value = setor.id
       optionSetor.innerHTML = setor.nome
       divsetor.appendChild(optionSetor)
@@ -275,6 +280,7 @@ $("#cadastroFolha").click(function () {
     let divfuncionario = document.getElementById("select-funcionario")
     for(let funcionario of funcionarios){
       let optionFuncionario = document.createElement('option')
+      optionFuncionario.setAttribute('id', 'option-funcionario')
       optionFuncionario.value = funcionario.id
       optionFuncionario.innerHTML = funcionario.nome
       divfuncionario.appendChild(optionFuncionario)
@@ -283,10 +289,6 @@ $("#cadastroFolha").click(function () {
  }   
   
 
-  //Função para exibir mensagem ao clicar no botão de enviar
-  $('#submitForm').click(function(){
-    alert('Enviado com sucesso!')
-
-  })
+  
   
   
