@@ -143,9 +143,6 @@ $("#listarFuncionario").click(function () {
   });
 
 
-
-
-
 function cadastrarSetor()
 {
 let setor =
@@ -218,7 +215,7 @@ $("#cadastroSetor").click(function () {
 
   function listarSetores()
 {
-	//da um GET no endpoint "usuarios"
+	
 	fetch(url + 'listarsetores')
 	.then(response => response.json())
 	.then((setores) =>
@@ -241,8 +238,8 @@ $("#cadastroSetor").click(function () {
 			
 	
 			let divValorDia = document.createElement('input')
-			divValorDia.placeholder = 'CPF'
-			divCpdivValorDiaf.value = setor.cpf
+			divValorDia.placeholder = 'Valor'
+			divValorDia.value = setor.
 			divSetor.appendChild(divValorDia)
 
 			//insere a div do usuario na div com a lista de usuarios
@@ -261,6 +258,23 @@ $("#listarSetores").click(function () {
   </div>
   `);
   });
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   function cadastrarFolha()
   {
