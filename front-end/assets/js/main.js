@@ -86,17 +86,65 @@ $("#cadastroFuncionario").click(function () {
         <button type="button" class="btn btn-primary" onclick="cadastrarFunci()" id="cadastrarFuncionario">Enviar
         </button>
       </div>
-  </form>
 </div>
 `);
 });
 
+
+function listarFunci()
+{
+	//da um GET no endpoint "usuarios"
+	fetch(url + 'listarfuncionarios')
+	.then(response => response.json())
+	.then((funcionarios) =>
+	{
+		//pega div que vai conter a lista de usuarios
+		let listaFuncionarios = document.getElementById('lista-funcionarios')
+		
+
+		//preenche div com usuarios recebidos do GET
+		for(let funcionario of funcionarios)
+		{
+			//cria div para as informacoes de um usuario
+			let divfuncionario = document.createElement('div')
+		
+			
+			let divNome = document.createElement('input')
+			divNome.placeholder = 'Nome Completo'
+			divNome.value = funcionario.nome
+			divfuncionario.appendChild(divNome)
+			
+	
+			let divCpf = document.createElement('input')
+			divCpf.placeholder = 'CPF'
+			divCpf.value = funcionario.email
+			divfuncionario.appendChild(divCpf)
+
+      let divSexo = document.createElement('input')
+			divSexo.placeholder = 'Sexo'
+			divSexo.value = funcionario.email
+			divfuncionario.appendChild(divSexo)
+			
+			//insere a div do usuario na div com a lista de usuarios
+			listaFuncionarios.appendChild(divfuncionario)
+		}
+	})
+}
+
+
 $("#listarFuncionario").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
-    <h1>oiiiii</h1>
+  <div class="buttonEnviar pt-3">
+        <button type="button" class="btn btn-primary" onclick="listarFunci()">Listar Funcionários
+        </button>
+  </div>
+     <div id="lista-funcionarios"></div>
   </div>
   `);
   });
+
+
+
 
 
 function cadastrarSetor()
@@ -265,7 +313,7 @@ $("#cadastroFolha").click(function () {
       let optionSetor = document.createElement('option')
       optionSetor.value = setor.id
       optionSetor.innerHTML = setor.nome
-      optionSetor.setAttribute('id', 'option-setor')
+      optionSetor.setAttribute('class', 'option-setor')
       divsetor.appendChild(optionSetor)
     }
   })
