@@ -124,10 +124,109 @@ function listarFunci()
 			divSexo.placeholder = 'Sexo'
 			divSexo.value = funcionario.sexo
 			divfuncionario.appendChild(divSexo)
+
+
+      //cria o botao para remover o usuario
+			let btnRemover = document.createElement('button')
+			btnRemover.innerHTML = 'Remover'
+			btnRemover.onclick = u => remover(funcionario.id)
+		
+			//cria o botao para atualizar o usuario
+			let btnAtualizar = document.createElement('button')
+			btnAtualizar.innerHTML = 'Atualizar'
+			btnAtualizar.onclick = u => atualizar(funcionario.id, divNome, divCpf, divSexo)
+		
+			//cria a div com os dois botoes
+			let divBotoes = document.createElement('div')
+			divBotoes.style.display = 'flex'
+			divBotoes.appendChild(btnRemover)
+			divBotoes.appendChild(btnAtualizar)
+			divfuncionario.appendChild(divBotoes)
 			
 			//insere a div do usuario na div com a lista de usuarios
 			listaFuncionarios.appendChild(divfuncionario)
 		}
+	})
+}
+
+function atualizar(id, divNome, divCpf, divSexo)
+{
+	let body =
+	{
+		'nome': divNome.value,
+		'cpf': divCpf.value,
+		'sexo': divSexo.value
+	}
+	
+	fetch(url + "atualizarfuncionario/" + id,
+	{
+		'method': 'POST',
+		'redirect': 'follow',
+		'headers':
+		{
+			'Content-Type': 'application/json',
+			'Accept': 'application/json'
+		},
+		'body': JSON.stringify(body)
+	})
+	.then((response) =>
+	{
+		if(response.ok)
+		{
+			return response.text()
+		}
+		else
+		{
+			return response.text().then((text) =>
+			{
+				throw new Error(text)
+			})
+		}
+	})
+	.then((output) =>
+	{
+		listarFunci()
+		console.log(output)
+		alert('Usuário atualizado! \\o/')
+	})
+	.catch((error) =>
+	{
+		console.log(error)
+		alert('Não foi possível atualizar o usuário :/')
+	})
+}
+
+function remover(id)
+{
+	fetch(url + 'deletarfuncionario/' + id,
+	{
+		'method': 'POST',
+		'redirect': 'follow'
+	})
+	.then((response) =>
+	{
+		if(response.ok)
+		{
+			return response.text()
+		}
+		else
+		{
+			return response.text().then((text) =>
+			{
+				throw new Error(text)
+			})
+		}
+	})
+	.then((output) =>
+	{
+		listarFunci()
+		console.log(output)
+		alert('Usuário removido! >=]')
+	})
+	.catch((error) =>
+	{
+		console.log(error)
+		alert('Não foi possível remover o usuário :/')
 	})
 }
 
@@ -148,7 +247,7 @@ function cadastrarSetor()
 let setor =
 	{
 		'nome':  document.getElementById('nome-setor').value,
-		'valor':   document.getElementById('valor-dia').value,
+		'valorDiaTrabalho':   document.getElementById('valor-dia').value,
 	};
 
 
@@ -239,7 +338,7 @@ $("#cadastroSetor").click(function () {
 	
 			let divValorDia = document.createElement('input')
 			divValorDia.placeholder = 'Valor'
-			divValorDia.value = setor.
+			divValorDia.value = setor.valorDiaTrabalho
 			divSetor.appendChild(divValorDia)
 
 			//insere a div do usuario na div com a lista de usuarios
