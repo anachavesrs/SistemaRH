@@ -332,20 +332,113 @@ $("#cadastroSetor").click(function () {
 			let divSetor = document.createElement('div')
 		
 			
-			let divNome = document.createElement('input')
-			divNome.placeholder = 'Nome Setor'
-			divNome.value = setor.nome
-			divSetor.appendChild(divNome)
+			let divNomeSetor = document.createElement('input')
+			divNomeSetor.placeholder = 'Nome Setor'
+			divNomeSetor.value = setor.nome
+			divSetor.appendChild(divNomeSetor)
 			
-	
 			let divValorDia = document.createElement('input')
 			divValorDia.placeholder = 'Valor'
 			divValorDia.value = setor.valorDiaTrabalho
 			divSetor.appendChild(divValorDia)
 
-			//insere a div do usuario na div com a lista de usuarios
+      let btnRemover = document.createElement('button')
+			btnRemover.innerHTML = 'Remover'
+			btnRemover.onclick = u => remover(setor.id)
+		
+			let btnAtualizar = document.createElement('button')
+			btnAtualizar.innerHTML = 'Atualizar'
+			btnAtualizar.onclick = u => atualizar(setor.id, divNomeSetor, divValorDia)
+		
+			let divBotoes = document.createElement('div')
+			divBotoes.style.display = 'flex'
+			divBotoes.appendChild(btnRemover)
+			divBotoes.appendChild(btnAtualizar)
+			divfuncionario.appendChild(divBotoes)
+
 			listaSetores.appendChild(divSetor)
 		}
+	})
+}
+
+function atualizarSetor(id, divNomeSetor, divValorDia)
+{
+	let setor =
+	{
+		'nome': divNomeSetor.value,
+		'valorDiaTrabalho': divValorDia.value,
+		
+	}
+	
+	fetch(url + "atualizarsetor/" + id,
+	{
+		'method': 'POST',
+		'redirect': 'follow',
+		'headers':
+		{
+			'Content-Type': 'application/json',
+			'Accept': 'application/json'
+		},
+		'body': JSON.stringify(setor)
+	})
+	.then((response) =>
+	{
+		if(response.ok)
+		{
+			return response.text()
+		}
+		else
+		{
+			return response.text().then((text) =>
+			{
+				throw new Error(text)
+			})
+		}
+	})
+	.then((output) =>
+	{
+		listarSetores()
+		console.log(output)
+		alert('Usuário atualizado! \\o/')
+	})
+	.catch((error) =>
+	{
+		console.log(error)
+		alert('Não foi possível atualizar o usuário :/')
+	})
+}
+
+function removerSetor(id)
+{
+	fetch(url + 'deletarsetor/' + id,
+	{
+		'method': 'POST',
+		'redirect': 'follow'
+	})
+	.then((response) =>
+	{
+		if(response.ok)
+		{
+			return response.text()
+		}
+		else
+		{
+			return response.text().then((text) =>
+			{
+				throw new Error(text)
+			})
+		}
+	})
+	.then((output) =>
+	{
+		listarSetores()
+		console.log(output)
+		alert('Usuário removido! >=]')
+	})
+	.catch((error) =>
+	{
+		console.log(error)
+		alert('Não foi possível remover o usuário :/')
 	})
 }
 
