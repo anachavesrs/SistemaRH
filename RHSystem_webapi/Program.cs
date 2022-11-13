@@ -161,8 +161,6 @@ namespace RHSystem_webapi
 				return "folha deletada deletado";
 			});
 
-
-
 			//Encontra folha do funcionario com base no ID do funcionário
 			app.MapGet("/listarFolhaFuncionario/{funcId}", (Database baseUsuarios, Database basedeDados, int funcId) => {
 				
