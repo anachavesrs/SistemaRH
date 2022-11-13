@@ -12,7 +12,7 @@
 
 var url = "http://localhost:3000/"
 
-
+// CRUD / CONEXÃO FUNCIONÁRIO
 function cadastrarFunci()
 {
 let funcionario =
@@ -35,7 +35,7 @@ fetch(url + "cadastrarfuncionario",
 		},
 		'body': JSON.stringify(funcionario)
 	})
-	//checa se requisicao deu certo
+	
 	.then((response) =>
 	{
 		if(response.ok)
@@ -50,13 +50,13 @@ fetch(url + "cadastrarfuncionario",
 			})
 		}
 	})
-	//trata resposta
+
 	.then((output) =>
 	{
 		console.log(output)
 		alert('Cadastro efetuado! :D')
 	})
-	//trata erro
+	
 	.catch((error) =>
 	{
 		console.log(error)
@@ -90,22 +90,21 @@ $("#cadastroFuncionario").click(function () {
 `);
 });
 
-
 function listarFunci()
 {
-	//da um GET no endpoint "usuarios"
+	
 	fetch(url + 'listarfuncionarios')
 	.then(response => response.json())
 	.then((funcionarios) =>
 	{
-		//pega div que vai conter a lista de usuarios
+		
 		let listaFuncionarios = document.getElementById('lista-funcionarios')
 		
 
-		//preenche div com usuarios recebidos do GET
+		
 		for(let funcionario of funcionarios)
 		{
-			//cria div para as informacoes de um usuario
+		
 			let divfuncionario = document.createElement('div')
 		
 			
@@ -126,24 +125,24 @@ function listarFunci()
 			divfuncionario.appendChild(divSexo)
 
 
-      //cria o botao para remover o usuario
+      
 			let btnRemover = document.createElement('button')
 			btnRemover.innerHTML = 'Remover'
 			btnRemover.onclick = u => remover(funcionario.id)
 		
-			//cria o botao para atualizar o usuario
+			
 			let btnAtualizar = document.createElement('button')
 			btnAtualizar.innerHTML = 'Atualizar'
 			btnAtualizar.onclick = u => atualizar(funcionario.id, divNome, divCpf, divSexo)
 		
-			//cria a div com os dois botoes
+			
 			let divBotoes = document.createElement('div')
 			divBotoes.style.display = 'flex'
 			divBotoes.appendChild(btnRemover)
 			divBotoes.appendChild(btnAtualizar)
 			divfuncionario.appendChild(divBotoes)
 			
-			//insere a div do usuario na div com a lista de usuarios
+			
 			listaFuncionarios.appendChild(divfuncionario)
 		}
 	})
@@ -241,6 +240,9 @@ $("#listarFuncionario").click(function () {
   `);
   });
 
+
+
+  // CRUD SETOR / CONEXÃO
 
 function cadastrarSetor()
 {
@@ -359,22 +361,7 @@ $("#listarSetores").click(function () {
   });
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+  // CRUD ENTIDA RELACIONAMENTO --- FOLHA / CONEXÃO
   function cadastrarFolha()
   {
   let folha =
@@ -398,7 +385,7 @@ $("#listarSetores").click(function () {
     },
      'body': JSON.stringify(folha)
    })
-  //checa se requisicao deu certo
+
    .then((response) =>
    {
      if(response.ok)
@@ -413,13 +400,13 @@ $("#listarSetores").click(function () {
       })
     }
    })
-   //trata resposta
+
    .then((output) =>
    {
     console.log(output)
      alert('Cadastro efetuado! :D')
   })
-   //trata erro
+  
    .catch((error) =>
    {
      console.log(error)
