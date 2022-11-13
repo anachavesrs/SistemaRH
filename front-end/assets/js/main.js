@@ -506,13 +506,13 @@ $("#listarSetores").click(function () {
    .then((output) =>
    {
     console.log(output)
-     alert('Cadastro efetuado! :D')
+     alert('Cadastro efetuado! O cálculo do pagamento será baseado no produto do valor que o setor paga por dia pela quantidade de dias trabalhados! Consulte a lista de folhas de pagamento.')
   })
   
    .catch((error) =>
    {
      console.log(error)
-     alert('Não foi possível efetuar o cadastro! :(')
+     alert('Não foi possível efetuar o cadastro!')
    })
   
   }// fim cadastrar folha
@@ -573,6 +573,56 @@ $("#cadastroFolha").click(function () {
       optionFuncionario.value = funcionario.id
       optionFuncionario.innerHTML = funcionario.nome
       divfuncionario.appendChild(optionFuncionario)
+    }
+  })
+ }  
+ 
+ 
+//  function listarFolhas()
+//  {
+   
+//    fetch(url + 'listarfolha')
+//    .then(response => response.json())
+//    .then((folhas) =>
+//    {
+//      let listaFolhas = document.getElementById('listar-folhas')
+     
+//      for(let folha of folhas)
+//      {
+      
+//        let divFolha = document.createElement('div')
+
+//        let divIdSetor = document.createElement('input')
+//        divIdSetor.value = folha.idSetor
+//        divIdSetor.innerHTML = setor.nome
+//        divSetor.appendChild(divNomeSetor)
+       
+       
+ 
+//        listaFolhas.appendChild(divFolha)
+//      }
+//    })
+//  }
+
+ $("#listarFolhas").click(function () {
+  $(".view-content").html(`<div class="view-content-teste">
+  <div class="buttonEnviar pt-3">
+        <button type="button" class="btn btn-primary" onclick="listarFolha()">Listar Setores
+        </button>
+  </div>
+     <div id="listar-folhas"></div>
+  </div>
+  `);
+  });
+
+  function selectSetorFolha()
+ {
+  
+  fetch(url + "listarsetores").then(x=>x.json()).then(setores=> {
+    for(let setor of setores){
+      let divSetor = document.createElement('input')
+      divSetor.value = setor.id
+      divSetor.innerHTML = setor.nome
     }
   })
  }   
