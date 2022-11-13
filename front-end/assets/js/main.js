@@ -54,13 +54,13 @@ fetch(url + "cadastrarfuncionario",
 	.then((output) =>
 	{
 		console.log(output)
-		alert('Cadastro efetuado! :D')
+		alert('O funcionário foi cadastrado com sucesso!')
 	})
 	
 	.catch((error) =>
 	{
 		console.log(error)
-		alert('Não foi possível efetuar o cadastro! :(')
+		alert('Não foi possível efetuar o cadastro!')
 	})
 
 }// fim cadastrar funcionario
@@ -75,7 +75,7 @@ $("#cadastroFuncionario").click(function () {
   <div class="form">
     <div class="row formularios align-items-center">
       <input id="nome-funcionario" type="text" placeholder="Insira o nome aqui" required>
-      <input id="cpf-funcionario" type="number" placeholder="Insira o cpf aqui" required>
+      <input id="cpf-funcionario" type="text" placeholder="Insira o cpf aqui" required>
       <select id="sexo-funcionario" name="selectSexo">
         <option value="" selected>Selecione um gênero</option>
         <option value="m">Masculino</option>
@@ -186,12 +186,12 @@ function atualizar(id, divNome, divCpf, divSexo)
 	{
 		listarFunci()
 		console.log(output)
-		alert('Usuário atualizado! \\o/')
+		alert('Funcionário atualizado com sucesso!')
 	})
 	.catch((error) =>
 	{
 		console.log(error)
-		alert('Não foi possível atualizar o usuário :/')
+		alert('Não foi possível atualizar o funcionário :/')
 	})
 }
 
@@ -220,12 +220,12 @@ function remover(id)
 	{
 		listarFunci()
 		console.log(output)
-		alert('Usuário removido! >=]')
+		alert('Funcionário removido!')
 	})
 	.catch((error) =>
 	{
 		console.log(error)
-		alert('Não foi possível remover o usuário :/')
+		alert('Não foi possível remover o funcionário!')
 	})
 }
 
@@ -283,13 +283,13 @@ fetch(url + "cadastrarsetor",
 	.then((output) =>
 	{
 		console.log(output)
-		alert('Cadastro efetuado! :D')
+		alert('Setor cadastrado com sucesso!')
 	})
 	//trata erro
 	.catch((error) =>
 	{
 		console.log(error)
-		alert('Não foi possível efetuar o cadastro! :(')
+		alert('Não foi possível efetuar o cadastro!')
 	})
 
 }// fim cadastrar setor
@@ -322,7 +322,7 @@ $("#cadastroSetor").click(function () {
 	.then((setores) =>
 	{
 		//pega div que vai conter a lista de usuarios
-		let listaSetores = document.getElementById('lista-setores')
+		let listaSetores = document.getElementById('listar-setores')
 		
 
 		//preenche div com usuarios recebidos do GET
@@ -344,17 +344,17 @@ $("#cadastroSetor").click(function () {
 
       let btnRemover = document.createElement('button')
 			btnRemover.innerHTML = 'Remover'
-			btnRemover.onclick = u => remover(setor.id)
+			btnRemover.onclick = u => removerSetor(setor.id)
 		
 			let btnAtualizar = document.createElement('button')
 			btnAtualizar.innerHTML = 'Atualizar'
-			btnAtualizar.onclick = u => atualizar(setor.id, divNomeSetor, divValorDia)
+			btnAtualizar.onclick = u => atualizarSetor(setor.id, divNomeSetor, divValorDia)
 		
 			let divBotoes = document.createElement('div')
 			divBotoes.style.display = 'flex'
 			divBotoes.appendChild(btnRemover)
 			divBotoes.appendChild(btnAtualizar)
-			divfuncionario.appendChild(divBotoes)
+			divSetor.appendChild(divBotoes)
 
 			listaSetores.appendChild(divSetor)
 		}
@@ -399,12 +399,12 @@ function atualizarSetor(id, divNomeSetor, divValorDia)
 	{
 		listarSetores()
 		console.log(output)
-		alert('Usuário atualizado! \\o/')
+		alert('Setor atualizado!')
 	})
 	.catch((error) =>
 	{
 		console.log(error)
-		alert('Não foi possível atualizar o usuário :/')
+		alert('Não foi possível atualizar o setor!')
 	})
 }
 
@@ -433,14 +433,16 @@ function removerSetor(id)
 	{
 		listarSetores()
 		console.log(output)
-		alert('Usuário removido! >=]')
+		alert('Setor removido!')
 	})
 	.catch((error) =>
 	{
 		console.log(error)
-		alert('Não foi possível remover o usuário :/')
+		alert('Não foi possível remover o setor')
 	})
 }
+
+
 
 $("#listarSetores").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
@@ -448,20 +450,27 @@ $("#listarSetores").click(function () {
         <button type="button" class="btn btn-primary" onclick="listarSetores()">Listar Setores
         </button>
   </div>
-     <div id="lista-setores"></div>
+     <div id="listar-setores"></div>
   </div>
   `);
   });
   
 
+
+
   // CRUD ENTIDA RELACIONAMENTO --- FOLHA / CONEXÃO
   function cadastrarFolha()
   {
+
+    let selectsetor = document.getElementById('select-setor')
+    let selecfunci = document.getElementById('select-funcionario')
+
   let folha =
     {
-      'setor':         document.getElementById('option-setor').value,
-      'funcionario':   document.getElementById('option-funcionario').value,
-      'dias':          document.getElementById('dias-trabalhados').value,
+      'idSetor':          selectsetor.options[selectsetor.selectedIndex].value,
+      'idFuncionario':    selecfunci.options[selecfunci.selectedIndex].value,
+      'diasTrabalhados':  document.getElementById('dias-trabalhados').value,
+      
     };
 
     console.log(folha)
@@ -549,7 +558,6 @@ $("#cadastroFolha").click(function () {
       let optionSetor = document.createElement('option')
       optionSetor.value = setor.id
       optionSetor.innerHTML = setor.nome
-      optionSetor.setAttribute('class', 'option-setor')
       divsetor.appendChild(optionSetor)
     }
   })
@@ -564,7 +572,6 @@ $("#cadastroFolha").click(function () {
       let optionFuncionario = document.createElement('option')
       optionFuncionario.value = funcionario.id
       optionFuncionario.innerHTML = funcionario.nome
-      optionFuncionario.setAttribute('id', 'option-funcionario')
       divfuncionario.appendChild(optionFuncionario)
     }
   })
