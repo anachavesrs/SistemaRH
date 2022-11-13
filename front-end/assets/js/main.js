@@ -506,7 +506,7 @@ $("#listarSetores").click(function () {
    .then((output) =>
    {
     console.log(output)
-     alert('Cadastro efetuado! O cálculo do pagamento será baseado no produto do valor que o setor paga por dia pela quantidade de dias trabalhados! Consulte a lista de folhas de pagamento.')
+     alert('Cadastro efetuado!')
   })
   
    .catch((error) =>
@@ -615,18 +615,6 @@ $("#cadastroFolha").click(function () {
   `);
   });
 
-  function selectSetorFolha()
- {
-  
-  fetch(url + "listarsetores").then(x=>x.json()).then(setores=> {
-    for(let setor of setores){
-      let divSetor = document.createElement('input')
-      divSetor.value = setor.id
-      divSetor.innerHTML = setor.nome
-    }
-  })
- }   
-  
 
   
   
