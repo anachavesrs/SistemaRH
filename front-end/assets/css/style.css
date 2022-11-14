@@ -118,3 +118,7 @@ main {
     flex-direction: column;
     text-align: center;
 }
+
+.main-view{
+  background-image: url("/front-end/assets/img/fotorh.jpg");
+}

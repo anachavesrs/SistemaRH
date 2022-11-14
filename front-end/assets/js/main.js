@@ -124,7 +124,6 @@ function listarFunci()
 			divSexo.value = funcionario.sexo
 			divfuncionario.appendChild(divSexo)
 
-
       
 			let btnRemover = document.createElement('button')
 			btnRemover.innerHTML = 'Remover'
@@ -578,36 +577,50 @@ $("#cadastroFolha").click(function () {
  }  
  
  
-//  function listarFolhas()
-//  {
+ function listarFolhas()
+ {
    
-//    fetch(url + 'listarfolha')
-//    .then(response => response.json())
-//    .then((folhas) =>
-//    {
-//      let listaFolhas = document.getElementById('listar-folhas')
+   fetch(url + 'listarfolha')
+   .then(response => response.json())
+   .then((folhas) =>
+   {
+     let listaFolhas = document.getElementById('listar-folhas')
      
-//      for(let folha of folhas)
-//      {
-      
-//        let divFolha = document.createElement('div')
+     for(let folha of folhas)
+     {
+      let divFolha = document.createElement('div')
 
-//        let divIdSetor = document.createElement('input')
-//        divIdSetor.value = folha.idSetor
-//        divIdSetor.innerHTML = setor.nome
-//        divSetor.appendChild(divNomeSetor)
+      let divIdSetor = document.createElement('input')
+			divIdSetor.placeholder = ''
+			divIdSetor.value = folha.idSetor
+			divFolha.appendChild(divIdSetor)
+
+      let divIdFuncionario = document.createElement('input')
+			divIdFuncionario.placeholder = ''
+			divIdFuncionario.value = folha.idFuncionario
+			divFolha.appendChild(divIdFuncionario)
+
+      let divDiastrabalhados = document.createElement('input')
+			divDiastrabalhados.placeholder = ''
+			divDiastrabalhados.value = folha.diasTrabalhados
+			divFolha.appendChild(divDiastrabalhados)
+
+      let divSalario = document.createElement('input')
+			divSalario.placeholder = ''
+			divSalario.value = folha.salario
+			divFolha.appendChild(divSalario)
+
+      listaFolhas.appendChild(divFolha)
        
-       
- 
-//        listaFolhas.appendChild(divFolha)
-//      }
-//    })
-//  }
+     }
+   })
+
+ }
 
  $("#listarFolhas").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
   <div class="buttonEnviar pt-3">
-        <button type="button" class="btn btn-primary" onclick="listarFolha()">Listar Setores
+        <button type="button" class="btn btn-primary" onclick="listarFolhas()">Listar Folhas
         </button>
   </div>
      <div id="listar-folhas"></div>
