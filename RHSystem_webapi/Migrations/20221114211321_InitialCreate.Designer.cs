@@ -10,7 +10,7 @@ using RHSystem_webapi;
 namespace RHSystem_webapi.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20221027220207_InitialCreate")]
+    [Migration("20221114211321_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

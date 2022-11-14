@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/inffus4/Documents/GitHub/SistemaRH/RHSystem_webapi/RHSystem_webapi.csproj": {}
+    "C:\\Users\\annag\\OneDrive\\Documentos\\GitHub\\SistemaRH\\RHSystem_webapi\\RHSystem_webapi.csproj": {}
   },
   "projects": {
-    "/Users/inffus4/Documents/GitHub/SistemaRH/RHSystem_webapi/RHSystem_webapi.csproj": {
+    "C:\\Users\\annag\\OneDrive\\Documentos\\GitHub\\SistemaRH\\RHSystem_webapi\\RHSystem_webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/inffus4/Documents/GitHub/SistemaRH/RHSystem_webapi/RHSystem_webapi.csproj",
+        "projectUniqueName": "C:\\Users\\annag\\OneDrive\\Documentos\\GitHub\\SistemaRH\\RHSystem_webapi\\RHSystem_webapi.csproj",
         "projectName": "RHSystem_webapi",
-        "projectPath": "/Users/inffus4/Documents/GitHub/SistemaRH/RHSystem_webapi/RHSystem_webapi.csproj",
-        "packagesPath": "/Users/inffus4/.nuget/packages/",
-        "outputPath": "/Users/inffus4/Documents/GitHub/SistemaRH/RHSystem_webapi/obj/",
+        "projectPath": "C:\\Users\\annag\\OneDrive\\Documentos\\GitHub\\SistemaRH\\RHSystem_webapi\\RHSystem_webapi.csproj",
+        "packagesPath": "C:\\Users\\annag\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\annag\\OneDrive\\Documentos\\GitHub\\SistemaRH\\RHSystem_webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/inffus4/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\annag\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
