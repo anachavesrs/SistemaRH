@@ -58,8 +58,9 @@ $("#cadastroFuncionario").click(function () {
 <h1>Cadastrar Funcionario</h1>
   <div class="form">
     <div class="row formularios align-items-center">
-      <input id="nome-funcionario" type="text" placeholder="Insira o nome aqui" required>
-      <input id="cpf-funcionario" type="text" placeholder="Insira o cpf aqui" required>
+    
+      <input id="nome-funcionario" type="text" placeholder="Insira o nome aqui">
+      <input id="cpf-funcionario" type="text" placeholder="Insira o cpf aqui">
       <select id="sexo-funcionario" name="selectSexo">
         <option value="" selected>Selecione um gênero</option>
         <option value="m">Masculino</option>
@@ -529,6 +530,30 @@ function listarFolhas() {
     });
 }
 
+function removerFolha(id) {
+  fetch(url + "deletarfolha/" + id, {
+    method: "POST",
+    redirect: "follow",
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        return response.text().then((text) => {
+          throw new Error(text);
+        });
+      }
+    })
+    .then((output) => {
+      listarFolhas();
+      console.log(output);
+      alert("Setor removido!");
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("Não foi possível remover o setor");
+    });
+}
 
 
 
@@ -546,16 +571,55 @@ $("#listarFolhas").click(function () {
 });
 
 
+
+
 $("#listarFolhaId").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
+
+  <div>
+  <input id="id-folha"> </input>
+  </div>
   <div class="buttonEnviar pt-3">
         <button type="button" class="btn btn-primary" onclick="listarFolhaId()">Listar Folha
         </button>
   </div>
-     <div id="listar-folhas"></div>
+     <div id="listar-folha-id"></div>
   </div>
   `);
 });
+
+
+// function listarFolhaId(idFolha) {
+//   let idFolha = document.getElementById("id-folha")
+
+//   fetch(url + "listarfolhaid" + idFolha)
+//     .then((response) => response.json())
+//     .then((folhas) => {
+
+//       let listaFolhas = document.getElementById("listar-folha-id");
+
+//       for (let folha of folhas) {
+//         let divFolha = document.createElement("div");
+
+//         let idFolha = document.createElement("input");
+//         idFolha.placeholder = 'Dias trabalhados no mês';
+//         idFolha.value = folha.id;
+//         divFolha.appendChild(idFolha);
+
+//         let divDiastrabalhados = document.createElement("input");
+//         divDiastrabalhados.placeholder = 'Dias trabalhados no mês';
+//         divDiastrabalhados.value = folha.diasTrabalhados;
+//         divFolha.appendChild(divDiastrabalhados);
+
+//         let divSalario = document.createElement("input");
+//         divSalario.placeholder = "";
+//         divSalario.value = folha.salario;
+//         divFolha.appendChild(divSalario);
+
+//         listaFolhas.appendChild(divFolha);
+//       }
+//     });
+// }
 
 
 
