@@ -190,6 +190,11 @@ namespace RHSystem_webapi
 				
 			});
 
+ 
+			app.MapGet("/listarfolhaid/{id}", (Database basedeDados, int id) => {
+				return basedeDados.Folha.Find(id);
+			});
+
 
 			app.Run("http://localhost:3000");
 			

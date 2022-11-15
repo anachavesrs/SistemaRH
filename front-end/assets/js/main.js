@@ -276,11 +276,9 @@ function listarSetores() {
 
         let btnAtualizar = document.createElement("button");
         btnAtualizar.innerHTML = "Atualizar";
-        btnAtualizar.onclick = (u) =>
-          atualizarSetor(setor.id, divNomeSetor, divValorDia);
+        btnAtualizar.onclick = (u) => atualizarSetor(setor.id, divNomeSetor, divValorDia);
 
         let divBotoes = document.createElement("div");
-        divBotoes.style.display = "flex";
         divBotoes.appendChild(btnRemover);
         divBotoes.appendChild(btnAtualizar);
         divSetor.appendChild(divBotoes);
@@ -361,18 +359,20 @@ $("#listarSetores").click(function () {
   `);
 });
 
+
+
 // CRUD ENTIDA RELACIONAMENTO --- FOLHA / CONEXÃO
 function cadastrarFolha() {
   let selectsetor = document.getElementById("select-setor");
   let selecfunci = document.getElementById("select-funcionario");
 
   let folha = {
+    id: document.getElementById("id-folha-random").value,
     idSetor: selectsetor.options[selectsetor.selectedIndex].value,
     idFuncionario: selecfunci.options[selecfunci.selectedIndex].value,
     diasTrabalhados: document.getElementById("dias-trabalhados").value,
   };
-
-  console.log(folha);
+ 
 
   fetch(url + "cadastrarfolha", {
     method: "POST",
@@ -402,6 +402,9 @@ function cadastrarFolha() {
       console.log(error);
       alert("Não foi possível efetuar o cadastro!");
     });
+
+
+
 } // fim cadastrar folha
 
 //Criando formulário de cadastro folha
@@ -412,27 +415,54 @@ $("#cadastroFolha").click(function () {
       <div class="row formularios align-items-center">
       
       
+      <button onclick="gerar()">Gerar</button>
+      <div id="resp">
+      </div>
+
+      <div>
       <select id="select-setor">
       </select>
-
+      </div>
       
+
+      <div>
       <select id="select-funcionario">
       </select>
+      </div>
 
+      <div>
       <input id="dias-trabalhados" type="number">
+      </div>
 
       </div>
         <div class="buttonEnviar pt-3">
           <button type="button" class="btn btn-primary" onclick="cadastrarFolha()">Cadastrar
           </button>
         </div>
+        
+        <div id="folha-descricao">
+
+        </div>
+
     </div>
   </div>
   `);
 
   selectSetor();
   selectFuncionario();
+ 
+
 });
+
+function gerar()
+{
+  var resp = document.getElementById('resp');
+  let teste = document.createElement('input');
+  teste.setAttribute("id", "id-folha-random");
+  teste.value = Math.floor(8568* Math.random() + 1);
+  resp.appendChild(teste)
+  
+}
 
 function selectSetor() {
   fetch(url + "listarsetores")
@@ -471,18 +501,13 @@ function listarFolhas() {
       for (let folha of folhas) {
         let divFolha = document.createElement("div");
 
-        let divIdSetor = document.createElement("input");
-        divIdSetor.placeholder = "";
-        divIdSetor.value = folha.idSetor;
-        divFolha.appendChild(divIdSetor);
-
-        let divIdFuncionario = document.createElement("input");
-        divIdFuncionario.placeholder = "";
-        divIdFuncionario.value = folha.idFuncionario;
-        divFolha.appendChild(divIdFuncionario);
+        let idFolha = document.createElement("input");
+        idFolha.placeholder = 'Dias trabalhados no mês';
+        idFolha.value = folha.id;
+        divFolha.appendChild(idFolha);
 
         let divDiastrabalhados = document.createElement("input");
-        divDiastrabalhados.placeholder = "";
+        divDiastrabalhados.placeholder = 'Dias trabalhados no mês';
         divDiastrabalhados.value = folha.diasTrabalhados;
         divFolha.appendChild(divDiastrabalhados);
 
@@ -491,10 +516,23 @@ function listarFolhas() {
         divSalario.value = folha.salario;
         divFolha.appendChild(divSalario);
 
+        let btnRemover = document.createElement("button");
+        btnRemover.innerHTML = "Remover";
+        btnRemover.onclick = (u) => removerFolha(folha.id);
+
+        let divBotoes = document.createElement("div");
+        divBotoes.appendChild(btnRemover);
+        divFolha.appendChild(divBotoes);
+
         listaFolhas.appendChild(divFolha);
       }
     });
 }
+
+
+
+
+
 
 $("#listarFolhas").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
@@ -506,3 +544,18 @@ $("#listarFolhas").click(function () {
   </div>
   `);
 });
+
+
+$("#listarFolhaId").click(function () {
+  $(".view-content").html(`<div class="view-content-teste">
+  <div class="buttonEnviar pt-3">
+        <button type="button" class="btn btn-primary" onclick="listarFolhaId()">Listar Folha
+        </button>
+  </div>
+     <div id="listar-folhas"></div>
+  </div>
+  `);
+});
+
+
+
