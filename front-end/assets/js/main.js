@@ -9,10 +9,6 @@
   });
 })();
 
-$(document).ready(function () {
-  $("#cpf-funcionario").mask("999.999.999/99");
-});
-
 var url = "http://localhost:3000/";
 
 // CRUD / CONEXÃO FUNCIONÁRIO
@@ -56,6 +52,9 @@ function cadastrarFunci() {
 //Criando formulário de cadastro funcionario
 //Selecionando o elemento com a id cadastroFuncionario dentro da index.html
 $("#cadastroFuncionario").click(function () {
+  $(document).ready(function () {
+    $("#cpf-funcionario").mask("999.999.999-99");
+  });
   //Selecionando a div com classe view-content dentro do index.html
   //Povoando a div com .html(Função HTML para inserir HTML com JQUERY)
   $(".view-content").html(`<div class="view-content-teste">
@@ -65,9 +64,9 @@ $("#cadastroFuncionario").click(function () {
       <div class="form">
         <div class="row formularios align-items-center gap-3">
         
-          <input id="nome-funcionario" type="text" placeholder="Insira o nome aqui">
-          <input id="cpf-funcionario" type="text" placeholder="Insira o cpf aqui">
-          <select id="sexo-funcionario" name="selectSexo">
+          <input id="nome-funcionario" type="text" placeholder="Insira o nome aqui" required>
+          <input id="cpf-funcionario" type="text" placeholder="Insira o cpf aqui" required>
+          <select id="sexo-funcionario" name="selectSexo" required>
             <option value="" selected>Selecione um gênero</option>
             <option value="m">Masculino</option>
             <option value="f">Feminino</option>
