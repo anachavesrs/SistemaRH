@@ -55,22 +55,24 @@ $("#cadastroFuncionario").click(function () {
   //Selecionando a div com classe view-content dentro do index.html
   //Povoando a div com .html(Função HTML para inserir HTML com JQUERY)
   $(".view-content").html(`<div class="view-content-teste">
-<h1>Cadastrar Funcionario</h1>
-  <div class="form">
-    <div class="row formularios align-items-center">
-    
-      <input id="nome-funcionario" type="text" placeholder="Insira o nome aqui">
-      <input id="cpf-funcionario" type="text" placeholder="Insira o cpf aqui">
-      <select id="sexo-funcionario" name="selectSexo">
-        <option value="" selected>Selecione um gênero</option>
-        <option value="m">Masculino</option>
-        <option value="f">Feminino</option>
-      </select>
+  <div class="form-container">
+    <h1>Cadastrar Funcionario</h1>
+      <div class="form">
+        <div class="row formularios align-items-center">
+        
+          <input id="nome-funcionario" type="text" placeholder="Insira o nome aqui">
+          <input id="cpf-funcionario" type="text" placeholder="Insira o cpf aqui">
+          <select id="sexo-funcionario" name="selectSexo">
+            <option value="" selected>Selecione um gênero</option>
+            <option value="m">Masculino</option>
+            <option value="f">Feminino</option>
+          </select>
+        </div>
+          <div class="buttonEnviar pt-3">
+            <button type="button" class="btn btn-primary" onclick="cadastrarFunci()" id="cadastrarFuncionario">Enviar
+            </button>
+          </div>
     </div>
-      <div class="buttonEnviar pt-3">
-        <button type="button" class="btn btn-primary" onclick="cadastrarFunci()" id="cadastrarFuncionario">Enviar
-        </button>
-      </div>
 </div>
 `);
 });
@@ -277,7 +279,8 @@ function listarSetores() {
 
         let btnAtualizar = document.createElement("button");
         btnAtualizar.innerHTML = "Atualizar";
-        btnAtualizar.onclick = (u) => atualizarSetor(setor.id, divNomeSetor, divValorDia);
+        btnAtualizar.onclick = (u) =>
+          atualizarSetor(setor.id, divNomeSetor, divValorDia);
 
         let divBotoes = document.createElement("div");
         divBotoes.appendChild(btnRemover);
@@ -360,8 +363,6 @@ $("#listarSetores").click(function () {
   `);
 });
 
-
-
 // CRUD ENTIDA RELACIONAMENTO --- FOLHA / CONEXÃO
 function cadastrarFolha() {
   let selectsetor = document.getElementById("select-setor");
@@ -373,7 +374,6 @@ function cadastrarFolha() {
     idFuncionario: selecfunci.options[selecfunci.selectedIndex].value,
     diasTrabalhados: document.getElementById("dias-trabalhados").value,
   };
- 
 
   fetch(url + "cadastrarfolha", {
     method: "POST",
@@ -403,9 +403,6 @@ function cadastrarFolha() {
       console.log(error);
       alert("Não foi possível efetuar o cadastro!");
     });
-
-
-
 } // fim cadastrar folha
 
 //Criando formulário de cadastro folha
@@ -451,18 +448,14 @@ $("#cadastroFolha").click(function () {
 
   selectSetor();
   selectFuncionario();
- 
-
 });
 
-function gerar()
-{
-  var resp = document.getElementById('resp');
-  let teste = document.createElement('input');
+function gerar() {
+  var resp = document.getElementById("resp");
+  let teste = document.createElement("input");
   teste.setAttribute("id", "id-folha-random");
-  teste.value = Math.floor(8568* Math.random() + 1);
-  resp.appendChild(teste)
-  
+  teste.value = Math.floor(8568 * Math.random() + 1);
+  resp.appendChild(teste);
 }
 
 function selectSetor() {
@@ -503,12 +496,12 @@ function listarFolhas() {
         let divFolha = document.createElement("div");
 
         let idFolha = document.createElement("input");
-        idFolha.placeholder = 'Dias trabalhados no mês';
+        idFolha.placeholder = "Dias trabalhados no mês";
         idFolha.value = folha.id;
         divFolha.appendChild(idFolha);
 
         let divDiastrabalhados = document.createElement("input");
-        divDiastrabalhados.placeholder = 'Dias trabalhados no mês';
+        divDiastrabalhados.placeholder = "Dias trabalhados no mês";
         divDiastrabalhados.value = folha.diasTrabalhados;
         divFolha.appendChild(divDiastrabalhados);
 
@@ -555,10 +548,6 @@ function removerFolha(id) {
     });
 }
 
-
-
-
-
 $("#listarFolhas").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
   <div class="buttonEnviar pt-3">
@@ -569,9 +558,6 @@ $("#listarFolhas").click(function () {
   </div>
   `);
 });
-
-
-
 
 $("#listarFolhaId").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
@@ -587,7 +573,6 @@ $("#listarFolhaId").click(function () {
   </div>
   `);
 });
-
 
 // function listarFolhaId(idFolha) {
 //   let idFolha = document.getElementById("id-folha")
@@ -620,6 +605,3 @@ $("#listarFolhaId").click(function () {
 //       }
 //     });
 // }
-
-
-
