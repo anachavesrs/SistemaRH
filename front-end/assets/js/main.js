@@ -9,6 +9,10 @@
   });
 })();
 
+$(document).ready(function () {
+  $("#cpf-funcionario").mask("999.999.999/99");
+});
+
 var url = "http://localhost:3000/";
 
 // CRUD / CONEXÃO FUNCIONÁRIO
@@ -56,9 +60,10 @@ $("#cadastroFuncionario").click(function () {
   //Povoando a div com .html(Função HTML para inserir HTML com JQUERY)
   $(".view-content").html(`<div class="view-content-teste">
   <div class="form-container">
-    <h1>Cadastrar Funcionario</h1>
+  <h2>Cadastrar funcionário</h2>
+    <p>Preencha todos os campos abaixo com os dados do funcionario para realizar o cadastro
       <div class="form">
-        <div class="row formularios align-items-center">
+        <div class="row formularios align-items-center gap-3">
         
           <input id="nome-funcionario" type="text" placeholder="Insira o nome aqui">
           <input id="cpf-funcionario" type="text" placeholder="Insira o cpf aqui">
@@ -236,17 +241,19 @@ function cadastrarSetor() {
 //Criando formulário de cadastro de setor
 $("#cadastroSetor").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
-  <h1>Cadastrar Setor</h1>
-    <div class="form">
-      <div class="row formularios align-items-center">
-        <input id="nome-setor" type="text" placeholder="Insira o setor aqui">
-        <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui">
-      </div>
-        <div class="buttonEnviar pt-3">
-          <button type="button" class="btn btn-primary" onclick="cadastrarSetor()" id="cadastrarSetor">Cadastrar
-          </button>
+  <div class="form-container-setor">
+    <h1>Cadastrar Setor</h1>
+      <div class="form">
+        <div class="row formularios align-items-center gap-3">
+          <input id="nome-setor" type="text" placeholder="Insira o setor aqui">
+          <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui">
         </div>
-    </form>
+          <div class="buttonEnviar pt-3">
+            <button type="button" class="btn btn-primary" onclick="cadastrarSetor()" id="cadastrarSetor">Cadastrar
+            </button>
+          </div>
+      </form>
+    </div>
   </div>
   `);
 });
@@ -410,7 +417,7 @@ $("#cadastroFolha").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
   <h1>Cadastrar Folha de Pagamento</h1>
     <div class="form">
-      <div class="row formularios align-items-center">
+      <div class="row formularios align-items-center gap-3">
       
       
       <button onclick="gerar()">Gerar</button>
