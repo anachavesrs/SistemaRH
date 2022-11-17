@@ -51,7 +51,6 @@ $("#cadastroFuncionario").click(function () {
 `);
 });
 
-
 // Cadastrando funcionário no sistema
 function cadastrarFunci() {
 
@@ -763,19 +762,48 @@ function listarFolhaId() {
       let listarFolha = document.getElementById("listar-folha-id");
       let divFolhaId = document.createElement("div");
       
-      let idFolha = document.createElement("input");
-      idFolha.value = folha.id;
-      divFolhaId.appendChild(idFolha);
+        let divFolha = document.createElement("div");
+        let containerLabels = document.createElement("div");
+        containerLabels.className = "containerLabels2";
 
-      let diastrabalhados = document.createElement("input");
-      diastrabalhados.value = folha.diasTrabalhados;
-      divFolhaId.appendChild(diastrabalhados);
+        let divIdFolha = document.createElement("div");
+        let labelIdFolha = document.createElement("label");
+        labelIdFolha.innerHTML = "ID da folha";
+        divIdFolha.appendChild(labelIdFolha);
+        containerLabels.appendChild(divIdFolha);
 
-      let salario = document.createElement("input");
-      salario.value = "$" + folha.salario;
-      divFolhaId.appendChild(salario);
+        let divDiasT = document.createElement("div");
+        let labelDiasT = document.createElement("label");
+        labelDiasT.innerHTML = "Dias trabalhados";
+        divDiasT.appendChild(labelDiasT);
+        containerLabels.appendChild(divDiasT);
 
-      listarFolha.appendChild(divFolhaId);
+        let divLabelSalario = document.createElement("div");
+        let labelSalario = document.createElement("label");
+        labelSalario.innerHTML = "Salario";
+        divLabelSalario.appendChild(labelSalario);
+        containerLabels.appendChild(divLabelSalario);
+
+        divFolha.appendChild(containerLabels);
+
+        let idFolha = document.createElement("input");
+        idFolha.placeholder = "Dias trabalhados no mês";
+        idFolha.value = folha.id;
+        divFolha.appendChild(idFolha);
+
+        let divDiastrabalhados = document.createElement("input");
+        divDiastrabalhados.placeholder = "Dias trabalhados no mês";
+        divDiastrabalhados.value = folha.diasTrabalhados;
+        divFolha.appendChild(divDiastrabalhados);
+
+        let divSalario = document.createElement("input");
+        divSalario.placeholder = "";
+        divSalario.value = "$" + folha.salario;
+        divFolha.appendChild(divSalario);
+
+        listaFolhas.appendChild(divFolha);
+      
+     
     });
 }
 
@@ -813,7 +841,7 @@ function listarFolhaSalario() {
       for (let folha of folhas) {
         let divFolha = document.createElement("div");
         let containerLabels = document.createElement("div");
-        containerLabels.className = "containerLabels";
+        containerLabels.className = "containerLabels2";
 
         let divIdFolha = document.createElement("div");
         let labelIdFolha = document.createElement("label");

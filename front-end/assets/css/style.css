@@ -309,3 +309,25 @@ select {
 {
 	color:red;
 }
+
+#listar-folha-salario input{
+  height: 35px;
+  border-radius: 10px;
+  border: solid 1px;
+  text-align: center;
+}
+
+#id-folha-salario input {
+  height: 35px;
+  border-radius: 10px;
+  border: solid 1px;
+  text-align: center;
+}
+
+
+.containerLabels2 {
+  display: flex;
+  gap: 6rem;
+  position: relative;
+  left: 75px;
+}
