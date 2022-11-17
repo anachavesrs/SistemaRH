@@ -66,8 +66,8 @@ $("#cadastroFuncionario").click(function () {
       <div class="form">
         <div class="row formularios align-items-center gap-3">
         
-          <input id="nome-funcionario" type="text" placeholder="Insira o nome aqui" required/>
-          <input id="cpf-funcionario" type="text" placeholder="Insira o cpf aqui" required>
+          <input id="nome-funcionario" onblur="validaNoome()" type="text" placeholder="Insira o nome aqui" required/>
+          <input id="cpf-funcionario" onblur="validaCpf()" type="text" placeholder="Insira o cpf aqui" required>
           <select id="sexo-funcionario" name="selectSexo" required>
             <option value="" selected>Selecione um gênero</option>
             <option value="Masculino">Masculino</option>
@@ -106,6 +106,7 @@ function listarFunci() {
 
       for (let funcionario of funcionarios) {
         let divfuncionario = document.createElement("div");
+        divfuncionario.className = "inputDados";
 
         let divNome = document.createElement("input");
         divNome.placeholder = "Nome Completo";
@@ -476,6 +477,7 @@ $("#cadastroFolha").click(function () {
       <div>
       <label for="text">Selecione o setor</label>
       <select id="select-setor">
+      
       </select>
       </div>
       
@@ -687,4 +689,19 @@ function listarFolhaId() {
 
       listarFolha.appendChild(divFolhaId);
     });
+}
+
+//Funções de validação
+function validaNoome() {
+  let nomeFunc = document.getElementById("nome-funcionario").value;
+  if (nomeFunc == "") {
+    alert("É obrigatório preencher o nome");
+  }
+}
+
+function validaCpf() {
+  let cpfFunc = document.getElementById("cpf-funcionario").value;
+  if (cpfFunc == "") {
+    alert("É obrigatório preencher o CPF");
+  }
 }
