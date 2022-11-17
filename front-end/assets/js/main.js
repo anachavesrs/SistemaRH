@@ -517,7 +517,7 @@ function listarFolhas() {
   fetch(url + "listarfolha")
     .then((response) => response.json())
     .then((folhas) => {
-      
+
       let listaFolhas = document.getElementById("listar-folhas");
 
       for (let folha of folhas) {
@@ -609,10 +609,35 @@ console.log(idFolha) //aqui está o id que que vai retornar o item que eu quero
 
 fetch(url + "listarfolhaid/" + idFolha)
 
- .then((response) => response.json())
- .then((folhas) => {
+ .then((x) => x.json())
+ .then((folha) => {
 
+  console.log(folha)
 
+  // let listarFolha = document.getElementById("listar-folha-id");
+  // let divFolhaId = document.createElement("div");
+
+  // let idFolha = document.createElement("input");
+  // idFolha.value = folha.id;
+  // divFolhaId.appendChild(idFolha);
+
+  // let divDiastrabalhados = document.createElement("input");
+  // divDiastrabalhados.value = folha.diasTrabalhados;
+  // divFolhaId.appendChild(divDiastrabalhados);
+
+  // let divSalario = document.createElement("input");
+  // divSalario.value = folha.salario;
+  // divFolhaId.appendChild(divSalario);
+
+  // let btnRemover = document.createElement("button");
+  // btnRemover.innerHTML = "Remover";
+  // btnRemover.onclick = (u) => removerFolha(folha.id);
+
+  // let divBotoes = document.createElement("div");
+  // divBotoes.appendChild(btnRemover);
+  // divFolhaId.appendChild(divBotoes);
+
+  // listarFolha.appendChild(divFolhaId);
   
  });
 
