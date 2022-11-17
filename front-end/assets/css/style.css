@@ -2,7 +2,7 @@ body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
   font-family: "Lato", sans-serif;
-  background-color: #dedede !important;
+  background-color: #d2fdfe !important;
 }
 
 html {
@@ -155,10 +155,47 @@ select {
   width: 100%;
   height: 45px;
   border-radius: 10px;
-  border: none;
+  border: solid 1px;
 }
 
 .form-container-setor {
   position: relative;
   left: 50%;
+}
+
+/* TELA DE CADASTRO FUNCIONÁRIO */
+.form-container {
+  border: solid 1px;
+  border-color: white;
+  border-radius: 10px;
+  height: 608px;
+  width: 800px;
+  background-color: white;
+  position: absolute;
+  top: 6rem;
+}
+
+.form-container h2 {
+  padding-bottom: 30px;
+  padding-top: 40px;
+}
+
+.form-container p {
+  padding-bottom: 20px;
+}
+
+.form {
+  position: absolute;
+  left: 6rem;
+}
+
+#lista-funcionarios {
+  border: solid 1px;
+  border-color: white;
+  border-radius: 10px;
+  height: 608px;
+  width: 800px;
+  background-color: white;
+  position: absolute;
+  top: 6rem;
 }
