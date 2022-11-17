@@ -9,11 +9,12 @@
   });
 })();
 
+var viewContentTeste = $(".view-content-teste");
+
 var url = "http://localhost:3000/";
 
 // CRUD / CONEXÃO FUNCIONÁRIO
 function cadastrarFunci() {
-  
   let funcionario = {
     nome: document.getElementById("nome-funcionario").value,
     cpf: document.getElementById("cpf-funcionario").value,
@@ -82,24 +83,19 @@ $("#cadastroFuncionario").click(function () {
 `);
 });
 
-function validaNome(id)
-{
-	let divNome = document.getElementById(id)
-	if(divNome.value.trim().split(' ').length >= 2)
-	{
-		//divNome.style.border = 0
-		divNome.classList.remove('erro-input')
-		return true
-	}
-	else
-	{
-		//divNome.style.border = 'solid 1px red'
-		if(!divNome.classList.contains('erro-input'))
-		{
-			divNome.classList.add('erro-input')
-		}
-		return false
-	}
+function validaNome(id) {
+  let divNome = document.getElementById(id);
+  if (divNome.value.trim().split(" ").length >= 2) {
+    //divNome.style.border = 0
+    divNome.classList.remove("erro-input");
+    return true;
+  } else {
+    //divNome.style.border = 'solid 1px red'
+    if (!divNome.classList.contains("erro-input")) {
+      divNome.classList.add("erro-input");
+    }
+    return false;
+  }
 }
 
 function listarFunci() {
@@ -208,13 +204,15 @@ function remover(id) {
 }
 
 $("#listarFuncionario").click(function () {
-  $(".view-content").html(`<div class="view-content-teste">
+  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
   <h1>Painel do funcionario</h1>
-  <div id="lista-funcionarios"></div>
-  <div class="buttonEnviar pt-3">
+  <p> Clique no botão abaixo para listar todos os funcionários cadastrados no sistema <p>
+  <div class="buttonEnviar listar-funcionarios-button pt-2 pb-4">
         <button type="button" class="btn btn-primary" onclick="listarFunci()">Listar Funcionários
         </button>
   </div>
+  <div id="lista-funcionarios"></div>
+  
   </div>
   `);
 });
@@ -517,7 +515,6 @@ function listarFolhas() {
   fetch(url + "listarfolha")
     .then((response) => response.json())
     .then((folhas) => {
-
       let listaFolhas = document.getElementById("listar-folhas");
 
       for (let folha of folhas) {
@@ -602,36 +599,30 @@ $("#listarFolhaId").click(function () {
   `);
 });
 
-
-
 function listarFolhaId() {
-var idFolha = document.getElementById("id-folha").value
-console.log(idFolha) //aqui está o id que que vai retornar o item que eu quero
+  var idFolha = document.getElementById("id-folha").value;
+  console.log(idFolha); //aqui está o id que que vai retornar o item que eu quero
 
-fetch(url + "listarfolhaid/" + idFolha)
+  fetch(url + "listarfolhaid/" + idFolha)
+    .then((x) => x.json())
+    .then((folha) => {
+      console.log(folha);
 
- .then((x) => x.json())
- .then((folha) => {
+      let listarFolha = document.getElementById("listar-folha-id");
+      let divFolhaId = document.createElement("div");
 
-  console.log(folha)
+      let idFolha = document.createElement("input");
+      idFolha.value = folha.id;
+      divFolhaId.appendChild(idFolha);
 
-  let listarFolha = document.getElementById("listar-folha-id");
-  let divFolhaId = document.createElement("div");
+      let diastrabalhados = document.createElement("input");
+      diastrabalhados.value = folha.diasTrabalhados;
+      divFolhaId.appendChild(diastrabalhados);
 
-   let idFolha = document.createElement("input");
-   idFolha.value = folha.id;
-   divFolhaId.appendChild(idFolha);
+      let salario = document.createElement("input");
+      salario.value = folha.salario;
+      divFolhaId.appendChild(salario);
 
-  let diastrabalhados = document.createElement("input");
-  diastrabalhados.value = folha.diasTrabalhados;
-  divFolhaId.appendChild(diastrabalhados);
-
-  let salario = document.createElement("input");
-  salario.value = folha.salario;
-  divFolhaId.appendChild(salario);
-
-   listarFolha.appendChild(divFolhaId);
-  
- });
-
+      listarFolha.appendChild(divFolhaId);
+    });
 }
