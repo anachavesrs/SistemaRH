@@ -41,7 +41,7 @@ $("#cadastroFuncionario").click(function () {
           </select>
         </div>
           <div class="buttonEnviar pt-3">
-            <button type="button" class="btn btn-primary" onclick="cadastrarFunci() id="buttonCadastrarFunci" id="cadastrarFuncionario">Enviar
+            <button type="button" class="btn btn-primary" onclick="cadastrarFunci()" >Enviar
             </button>
             <div id="valida">
             </div>
@@ -96,13 +96,11 @@ function cadastrarFunci() {
 
 function validaNoome() {
   let nomeFunc = document.getElementById("nome-funcionario").value;
-  // let buttonCondicao = getElementById("buttonCadastrarFunci")
   if (nomeFunc == "") {
   let divErro = document.getElementById("valida")
   let pErro = document.createElement("p")
   pErro.innerHTML = "O campo nome não pode estar vazio"
   pErro.className = "erro-input";
-  // buttonCondicao.setAttribute("disabled")
   divErro.appendChild(pErro)
   }
  }
