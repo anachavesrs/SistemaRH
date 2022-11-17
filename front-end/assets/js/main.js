@@ -590,6 +590,7 @@ $("#listarFolhas").click(function () {
 $("#listarFolhaId").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
   <div>
+  <label>Insira abaixo a chave de folha gerada no cadastro</label>
   <input id="id-folha"> </input>
   </div>
   <div class="buttonEnviar pt-3">
@@ -614,30 +615,22 @@ fetch(url + "listarfolhaid/" + idFolha)
 
   console.log(folha)
 
-  // let listarFolha = document.getElementById("listar-folha-id");
-  // let divFolhaId = document.createElement("div");
+  let listarFolha = document.getElementById("listar-folha-id");
+  let divFolhaId = document.createElement("div");
 
-  // let idFolha = document.createElement("input");
-  // idFolha.value = folha.id;
-  // divFolhaId.appendChild(idFolha);
+   let idFolha = document.createElement("input");
+   idFolha.value = folha.id;
+   divFolhaId.appendChild(idFolha);
 
-  // let divDiastrabalhados = document.createElement("input");
-  // divDiastrabalhados.value = folha.diasTrabalhados;
-  // divFolhaId.appendChild(divDiastrabalhados);
+  let diastrabalhados = document.createElement("input");
+  diastrabalhados.value = folha.diasTrabalhados;
+  divFolhaId.appendChild(diastrabalhados);
 
-  // let divSalario = document.createElement("input");
-  // divSalario.value = folha.salario;
-  // divFolhaId.appendChild(divSalario);
+  let salario = document.createElement("input");
+  salario.value = folha.salario;
+  divFolhaId.appendChild(salario);
 
-  // let btnRemover = document.createElement("button");
-  // btnRemover.innerHTML = "Remover";
-  // btnRemover.onclick = (u) => removerFolha(folha.id);
-
-  // let divBotoes = document.createElement("div");
-  // divBotoes.appendChild(btnRemover);
-  // divFolhaId.appendChild(divBotoes);
-
-  // listarFolha.appendChild(divFolhaId);
+   listarFolha.appendChild(divFolhaId);
   
  });
 
