@@ -127,12 +127,14 @@ function listarFunci() {
         btnRemover.onclick = (u) => remover(funcionario.id);
 
         let btnAtualizar = document.createElement("button");
+        btnAtualizar.className = "att";
         btnAtualizar.innerHTML = "Atualizar";
         btnAtualizar.onclick = (u) =>
           atualizar(funcionario.id, divNome, divCpf, divSexo);
 
         let divBotoes = document.createElement("div");
         divBotoes.style.display = "flex";
+        divBotoes.className = "butttons";
         divBotoes.appendChild(btnRemover);
         divBotoes.appendChild(btnAtualizar);
         divfuncionario.appendChild(divBotoes);
@@ -261,7 +263,8 @@ $("#cadastroSetor").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
   <div class="form-container-setor">
     <h1>Cadastrar Setor</h1>
-      <div class="form">
+    <p>Preencha todos os campos para prosseguir com o cadastro.
+      <div class="form-setor">
         <div class="row formularios align-items-center gap-3">
           <input id="nome-setor" type="text" placeholder="Insira o setor aqui">
           <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui">
@@ -288,22 +291,43 @@ function listarSetores() {
         //cria div para as informacoes de um usuario
         let divSetor = document.createElement("div");
 
+        let divSetorNome = document.createElement("div");
+        divSetorNome.className = "setorNome";
+
+        let divSetorValor = document.createElement("div");
+        divSetorValor.className = "setorValor";
+
+        let divLabelValor = document.createElement("div");
+        divLabelValor.className = "labelValor";
+
+        let labelNomeSetor = document.createElement("label");
+        labelNomeSetor.innerHTML = "Nome do Setor";
+        divSetor.appendChild(labelNomeSetor);
+
+        let labelValorSetor = document.createElement("label");
+        labelValorSetor.innerHTML = "Valor pago por dia";
+        divLabelValor.appendChild(labelValorSetor);
         let divNomeSetor = document.createElement("input");
         divNomeSetor.placeholder = "Nome Setor";
         divNomeSetor.value = setor.nome;
-        divSetor.appendChild(divNomeSetor);
+        divSetorNome.appendChild(divNomeSetor);
+        divSetor.appendChild(divSetorNome);
 
         let divValorDia = document.createElement("input");
         divValorDia.placeholder = "Valor";
         divValorDia.value = setor.valorDiaTrabalho;
-        divSetor.appendChild(divValorDia);
+        divSetorValor.appendChild(divValorDia);
+        divLabelValor.appendChild(divSetorValor);
+        divSetor.appendChild(divLabelValor);
 
         let btnRemover = document.createElement("button");
         btnRemover.innerHTML = "Remover";
+        btnRemover.className = "remove";
         btnRemover.onclick = (u) => removerSetor(setor.id);
 
         let btnAtualizar = document.createElement("button");
         btnAtualizar.innerHTML = "Atualizar";
+        btnAtualizar.className = "att";
         btnAtualizar.onclick = (u) =>
           atualizarSetor(setor.id, divNomeSetor, divValorDia);
 
@@ -378,8 +402,10 @@ function removerSetor(id) {
 }
 
 $("#listarSetores").click(function () {
-  $(".view-content").html(`<div class="view-content-teste">
-  <div class="buttonEnviar pt-3">
+  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
+  <h1>Listar setores</h1>
+  <p>Clique no botão abaixo para listar todos os setores cadastrados em nosso sistema</p>
+  <div class="buttonEnviar">
         <button type="button" class="btn btn-primary" onclick="listarSetores()">Listar Setores
         </button>
   </div>
@@ -421,7 +447,9 @@ function cadastrarFolha() {
 
     .then((output) => {
       console.log(output);
-      alert("Cadastro efetuado!");
+      alert(
+        "Cadastro efetuado! Guarde o ID da folha gerado pois só com ele será possível acessar a folha"
+      );
     })
 
     .catch((error) => {
@@ -432,28 +460,34 @@ function cadastrarFolha() {
 
 //Criando formulário de cadastro folha
 $("#cadastroFolha").click(function () {
-  $(".view-content").html(`<div class="view-content-teste">
+  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
+  <div class="tituloo">
   <h1>Cadastrar Folha de Pagamento</h1>
+  <p>Clique no botão abaixo e preencha todos os campos para prosseguir com o cadastro</p>
+  </div>
     <div class="form">
       <div class="row formularios align-items-center gap-3">
       
       
-      <button onclick="gerar()">Gerar</button>
+      <button class="btn btn-primary" onclick="gerar()">Gerar</button>
       <div id="resp">
       </div>
 
       <div>
+      <label for="text">Selecione o setor</label>
       <select id="select-setor">
       </select>
       </div>
       
 
       <div>
+      <label for="text">Selecione o funcionario</label>
       <select id="select-funcionario">
       </select>
       </div>
 
       <div>
+      <label for="text">Digite os dias trabalhados</label>
       <input id="dias-trabalhados" type="number">
       </div>
 
@@ -477,9 +511,12 @@ $("#cadastroFolha").click(function () {
 
 function gerar() {
   var resp = document.getElementById("resp");
+  let labelTeste = document.createElement("label");
+  labelTeste.innerHTML = "ID Da folha gerado";
   let teste = document.createElement("input");
   teste.setAttribute("id", "id-folha-random");
   teste.value = Math.floor(8568 * Math.random() + 1);
+  resp.appendChild(labelTeste);
   resp.appendChild(teste);
 }
 
@@ -519,6 +556,28 @@ function listarFolhas() {
 
       for (let folha of folhas) {
         let divFolha = document.createElement("div");
+        let containerLabels = document.createElement("div");
+        containerLabels.className = "containerLabels";
+
+        let divIdFolha = document.createElement("div");
+        let labelIdFolha = document.createElement("label");
+        labelIdFolha.innerHTML = "ID da folha";
+        divIdFolha.appendChild(labelIdFolha);
+        containerLabels.appendChild(divIdFolha);
+
+        let divDiasT = document.createElement("div");
+        let labelDiasT = document.createElement("label");
+        labelDiasT.innerHTML = "Dias trabalhados";
+        divDiasT.appendChild(labelDiasT);
+        containerLabels.appendChild(divDiasT);
+
+        let divLabelSalario = document.createElement("div");
+        let labelSalario = document.createElement("label");
+        labelSalario.innerHTML = "Salario";
+        divLabelSalario.appendChild(labelSalario);
+        containerLabels.appendChild(divLabelSalario);
+
+        divFolha.appendChild(containerLabels);
 
         let idFolha = document.createElement("input");
         idFolha.placeholder = "Dias trabalhados no mês";
@@ -537,6 +596,7 @@ function listarFolhas() {
 
         let btnRemover = document.createElement("button");
         btnRemover.innerHTML = "Remover";
+        btnRemover.className = "remove";
         btnRemover.onclick = (u) => removerFolha(folha.id);
 
         let divBotoes = document.createElement("div");
@@ -574,9 +634,11 @@ function removerFolha(id) {
 }
 
 $("#listarFolhas").click(function () {
-  $(".view-content").html(`<div class="view-content-teste">
+  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
+  <h1>Listar folhas de pagamento</h1>
+  <p>Clique no botão abaixo para gerar a lista com todas as folhas de pagamento cadastradas no sistema</p>
   <div class="buttonEnviar pt-3">
-        <button type="button" class="btn btn-primary" onclick="listarFolhas()">Listar Folhas
+        <button type="button" class="btn btn-primary mb-3" onclick="listarFolhas()">Listar Folhas
         </button>
   </div>
      <div id="listar-folhas"></div>

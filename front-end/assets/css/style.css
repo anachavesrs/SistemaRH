@@ -2,7 +2,6 @@ body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
   font-family: "Lato", sans-serif;
-  background-color: #d2fdfe !important;
 }
 
 html {
@@ -15,6 +14,11 @@ main {
   max-height: 100vh;
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+.titulo-pagina {
+  padding-top: 20px;
+  padding-left: 15px;
 }
 
 .dropdown-toggle {
@@ -112,6 +116,12 @@ main {
   text-align: center;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+}
+
+.side-bar {
+  background-color: #f0f0f0;
+  border: solid 1px;
+  border-color: aliceblue;
 }
 
 /* VIEW */
@@ -212,14 +222,85 @@ select {
   height: 35px;
   border-radius: 10px;
   border: solid 1px;
+  text-align: center;
 }
 
-#lista-funcionarios button {
+.att {
   border: solid 1px;
   border-radius: 10px;
   background-color: cornflowerblue;
   margin-top: 2px;
+  color: white;
 }
 
-.listar-funcionarios-button {
+.remove {
+  border: solid 1px;
+  border-radius: 10px;
+  background-color: red;
+  margin-top: 2px;
+  color: white;
+}
+
+.butttons button:first-of-type {
+  border: solid 1px;
+  border-radius: 10px;
+  background-color: red;
+  margin-top: 2px;
+  color: white;
+}
+
+/* TELA DE LISTAR SETORES */
+
+.form-container-setor {
+  border: solid 1px;
+  border-color: white;
+  border-radius: 10px;
+  height: 608px;
+  width: 800px;
+  background-color: white;
+  position: absolute;
+  top: 6rem;
+}
+
+#listar-setores {
+  display: inline-flex;
+  gap: 1rem;
+  padding-top: 10px;
+}
+
+#listar-setores input {
+  height: 35px;
+  border: solid 1px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* TELA DE CADASTRAR FOLHA */
+
+.tituloo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 56px;
+  margin-top: 10px;
+}
+
+#listar-folhas {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#listar-folhas input {
+  height: 35px;
+  border: solid 1px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.containerLabels {
+  display: flex;
+  gap: 6rem;
+  position: relative;
+  left: 157px;
 }
