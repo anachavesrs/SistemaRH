@@ -13,8 +13,48 @@ var viewContentTeste = $(".view-content-teste");
 
 var url = "http://localhost:3000/";
 
+
 // CRUD / CONEXÃO FUNCIONÁRIO
+
+
+//Criando formulário de cadastro funcionario
+//Selecionando o elemento com a id cadastroFuncionario dentro da index.html
+$("#cadastroFuncionario").click(function () {
+  $(document).ready(function () {
+    $("#cpf-funcionario").mask("999.999.999-99");
+  });
+  //Selecionando a div com classe view-content dentro do index.html
+  //Povoando a div com .html(Função HTML para inserir HTML com JQUERY)
+  $(".view-content").html(`<div class="view-content-teste">
+  <div class="form-container">
+  <h2>Cadastrar funcionário</h2>
+    <p>Preencha todos os campos abaixo com os dados do funcionario para realizar o cadastro
+      <div class="form">
+        <div class="row formularios align-items-center gap-3">
+        
+          <input id="nome-funcionario" onblur="validaNoome()" type="text" placeholder="Insira o nome aqui"/>
+          <input id="cpf-funcionario" onblur="validaCpf()" type="text" placeholder="Insira o cpf aqui" required>
+          <select id="sexo-funcionario" name="selectSexo" required>
+            <option value="" selected>Selecione um gênero</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+          </select>
+        </div>
+          <div class="buttonEnviar pt-3">
+            <button type="button" class="btn btn-primary" onclick="cadastrarFunci()" id="cadastrarFuncionario">Enviar
+            </button>
+            <div id="valida">
+            </div>
+          </div>
+    </div>
+</div>
+`);
+});
+
+
+// Cadastrando funcionário no sistema
 function cadastrarFunci() {
+
   let funcionario = {
     nome: document.getElementById("nome-funcionario").value,
     cpf: document.getElementById("cpf-funcionario").value,
@@ -51,53 +91,51 @@ function cadastrarFunci() {
     });
 } // fim cadastrar funcionario
 
-//Criando formulário de cadastro funcionario
-//Selecionando o elemento com a id cadastroFuncionario dentro da index.html
-$("#cadastroFuncionario").click(function () {
-  $(document).ready(function () {
-    $("#cpf-funcionario").mask("999.999.999-99");
-  });
-  //Selecionando a div com classe view-content dentro do index.html
-  //Povoando a div com .html(Função HTML para inserir HTML com JQUERY)
-  $(".view-content").html(`<div class="view-content-teste">
-  <div class="form-container">
-  <h2>Cadastrar funcionário</h2>
-    <p>Preencha todos os campos abaixo com os dados do funcionario para realizar o cadastro
-      <div class="form">
-        <div class="row formularios align-items-center gap-3">
-        
-          <input id="nome-funcionario" onblur="validaNoome()" type="text" placeholder="Insira o nome aqui" required/>
-          <input id="cpf-funcionario" onblur="validaCpf()" type="text" placeholder="Insira o cpf aqui" required>
-          <select id="sexo-funcionario" name="selectSexo" required>
-            <option value="" selected>Selecione um gênero</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Feminino">Feminino</option>
-          </select>
-        </div>
-          <div class="buttonEnviar pt-3">
-            <button type="button" class="btn btn-primary" onclick="cadastrarFunci()" id="cadastrarFuncionario">Enviar
-            </button>
-          </div>
-    </div>
-</div>
-`);
-});
 
-function validaNome(id) {
-  let divNome = document.getElementById(id);
-  if (divNome.value.trim().split(" ").length >= 2) {
-    //divNome.style.border = 0
-    divNome.classList.remove("erro-input");
-    return true;
-  } else {
-    //divNome.style.border = 'solid 1px red'
-    if (!divNome.classList.contains("erro-input")) {
-      divNome.classList.add("erro-input");
-    }
-    return false;
+
+// Funções de validação dos inputs de cadastro de func
+
+function validaNoome() {
+  let nomeFunc = document.getElementById("nome-funcionario").value;
+  if (nomeFunc == "") {
+  let divErro = document.getElementById("valida")
+  let pErro = document.createElement("p")
+  pErro.innerHTML = "O campo nome não pode estar vazio"
+  pErro.className = "erro-input";
+
+
+  divErro.appendChild(pErro)
+  }
+ }
+
+ function validaCpf() {
+  let cpfFunc = document.getElementById("cpf-funcionario").value;
+  if (cpfFunc == "") {
+    let divErro = document.getElementById("valida")
+    let pErro = document.createElement("p")
+    pErro.innerHTML = "O campo cpf não pode estar vazio"
+    divErro.appendChild(pErro)
+    pErro.className = "erro-input";
   }
 }
 
+
+ // Listar funcionário no sistema
+ $("#listarFuncionario").click(function () {
+  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
+  <h1>Painel do funcionario</h1>
+  <p> Clique no botão abaixo para listar todos os funcionários cadastrados no sistema <p>
+  <div class="buttonEnviar listar-funcionarios-button pt-2 pb-4">
+        <button type="button" class="btn btn-primary" onclick="listarFunci()">Listar Funcionários
+        </button>
+  </div>
+  <div id="lista-funcionarios"></div>
+  
+  </div>
+  `);
+});
+
+// função que lista
 function listarFunci() {
   fetch(url + "listarfuncionarios")
     .then((response) => response.json())
@@ -145,6 +183,7 @@ function listarFunci() {
     });
 }
 
+// função que atualiza
 function atualizar(id, divNome, divCpf, divSexo) {
   let body = {
     nome: divNome.value,
@@ -181,6 +220,7 @@ function atualizar(id, divNome, divCpf, divSexo) {
     });
 }
 
+// função que remove
 function remover(id) {
   fetch(url + "deletarfuncionario/" + id, {
     method: "POST",
@@ -206,23 +246,11 @@ function remover(id) {
     });
 }
 
-$("#listarFuncionario").click(function () {
-  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
-  <h1>Painel do funcionario</h1>
-  <p> Clique no botão abaixo para listar todos os funcionários cadastrados no sistema <p>
-  <div class="buttonEnviar listar-funcionarios-button pt-2 pb-4">
-        <button type="button" class="btn btn-primary" onclick="listarFunci()">Listar Funcionários
-        </button>
-  </div>
-  <div id="lista-funcionarios"></div>
-  
-  </div>
-  `);
-});
+
 
 // CRUD SETOR / CONEXÃO
-
 function cadastrarSetor() {
+
   let setor = {
     nome: document.getElementById("nome-setor").value,
     valorDiaTrabalho: document.getElementById("valor-dia").value,
@@ -267,19 +295,45 @@ $("#cadastroSetor").click(function () {
     <p>Preencha todos os campos para prosseguir com o cadastro.
       <div class="form-setor">
         <div class="row formularios align-items-center gap-3">
-          <input id="nome-setor" type="text" placeholder="Insira o setor aqui">
-          <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui">
+          <input id="nome-setor" type="text" placeholder="Insira o setor aqui" onblur="validaNomeSetor()">
+          <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui" onblur="validaValorSetor()" >
         </div>
           <div class="buttonEnviar pt-3">
             <button type="button" class="btn btn-primary" onclick="cadastrarSetor()" id="cadastrarSetor">Cadastrar
             </button>
           </div>
-      </form>
+          <div id="valida-setor"></div>
     </div>
   </div>
   `);
 });
 
+
+// Funções de validação dos inputs de cadastro de setor
+function validaNomeSetor() {
+  let nomeSetor = document.getElementById("nome-setor").value;
+  if (nomeSetor == "") {
+  let divErro = document.getElementById("valida-setor")
+  let pErro = document.createElement("p")
+  pErro.innerHTML = "O campo nome setor não pode estar vazio!"
+  divErro.appendChild(pErro)
+  pErro.className = "erro-input"
+ 
+  }
+ }
+
+ function validaValorSetor() {
+  let valorSetor = document.getElementById("valor-dia").value;
+  if (valorSetor == "") {
+    let divErro = document.getElementById("valida-setor")
+    let pErro = document.createElement("p")
+    pErro.innerHTML = "O campo valor que o setor paga por dia não pode estar vazio!"
+    divErro.appendChild(pErro)
+    pErro.className = "erro-input"
+  }
+}
+
+// função que lista os setores do sistema
 function listarSetores() {
   fetch(url + "listarsetores")
     .then((response) => response.json())
@@ -316,7 +370,7 @@ function listarSetores() {
 
         let divValorDia = document.createElement("input");
         divValorDia.placeholder = "Valor";
-        divValorDia.value = setor.valorDiaTrabalho;
+        divValorDia.value = "$" + setor.valorDiaTrabalho;
         divSetorValor.appendChild(divValorDia);
         divLabelValor.appendChild(divSetorValor);
         divSetor.appendChild(divLabelValor);
@@ -415,7 +469,68 @@ $("#listarSetores").click(function () {
   `);
 });
 
+
+
 // CRUD ENTIDA RELACIONAMENTO --- FOLHA / CONEXÃO
+
+//Criando formulário de cadastro folha
+$("#cadastroFolha").click(function () {
+  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
+  <div class="tituloo">
+  <h1>Cadastrar Folha de Pagamento</h1>
+  <p>Clique no botão abaixo e preencha todos os campos para prosseguir com o cadastro</p>
+  </div>
+    <div class="form">
+      <div class="row formularios align-items-center gap-3">
+      
+      
+      <button class="btn btn-primary" onclick="gerar()">Gerar</button>
+      <div id="resp">
+      </div>
+
+      <div>
+      <label for="text">Selecione o setor</label>
+      <select id="select-setor">
+      
+      </select>
+      </div>
+      
+
+      <div>
+      <label for="text">Selecione o funcionario</label>
+      <select id="select-funcionario">
+      </select>
+      </div>
+
+      <div>
+      <label for="text">Digite os dias trabalhados</label>
+      <input id="dias-trabalhados" type="number" onblur="validaDias()">
+      </div>
+
+      </div>
+        <div class="buttonEnviar pt-3">
+          <button type="button" class="btn btn-primary" onclick="cadastrarFolha()">Cadastrar
+          </button>
+        </div>
+        
+        <div id="folha-descricao">
+
+        </div>
+        <div id="valida-folha">
+        </div>
+
+    </div>
+  </div>
+  `);
+
+  selectSetor();
+  selectFuncionario();
+});
+
+
+
+
+
 function cadastrarFolha() {
   let selectsetor = document.getElementById("select-setor");
   let selecfunci = document.getElementById("select-funcionario");
@@ -449,7 +564,7 @@ function cadastrarFolha() {
     .then((output) => {
       console.log(output);
       alert(
-        "Cadastro efetuado! Guarde o ID da folha gerado pois só com ele será possível acessar a folha"
+        "Cadastro efetuado! Guarde o ID da folha gerado pois só com ele será possível acessar a folha!!!"
       );
     })
 
@@ -459,58 +574,21 @@ function cadastrarFolha() {
     });
 } // fim cadastrar folha
 
-//Criando formulário de cadastro folha
-$("#cadastroFolha").click(function () {
-  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
-  <div class="tituloo">
-  <h1>Cadastrar Folha de Pagamento</h1>
-  <p>Clique no botão abaixo e preencha todos os campos para prosseguir com o cadastro</p>
-  </div>
-    <div class="form">
-      <div class="row formularios align-items-center gap-3">
-      
-      
-      <button class="btn btn-primary" onclick="gerar()">Gerar</button>
-      <div id="resp">
-      </div>
 
-      <div>
-      <label for="text">Selecione o setor</label>
-      <select id="select-setor">
-      
-      </select>
-      </div>
-      
 
-      <div>
-      <label for="text">Selecione o funcionario</label>
-      <select id="select-funcionario">
-      </select>
-      </div>
+// Validações da folha
+function validaDias() {
+  let divDias = document.getElementById("dias-trabalhados").value;
+  if (divDias == "") {
+  let divErro = document.getElementById("valida-folha")
+  let pErro = document.createElement("p")
+  pErro.innerHTML = "O campo dias trabalhados não pode estar vazio!"
+  divErro.appendChild(pErro)
+  pErro.className = "erro-input"
+  }
+ }
 
-      <div>
-      <label for="text">Digite os dias trabalhados</label>
-      <input id="dias-trabalhados" type="number">
-      </div>
-
-      </div>
-        <div class="buttonEnviar pt-3">
-          <button type="button" class="btn btn-primary" onclick="cadastrarFolha()">Cadastrar
-          </button>
-        </div>
-        
-        <div id="folha-descricao">
-
-        </div>
-
-    </div>
-  </div>
-  `);
-
-  selectSetor();
-  selectFuncionario();
-});
-
+// gera um id pro usuário e preenche o input
 function gerar() {
   var resp = document.getElementById("resp");
   let labelTeste = document.createElement("label");
@@ -522,6 +600,8 @@ function gerar() {
   resp.appendChild(teste);
 }
 
+
+// lista de setores do bd para cadastro
 function selectSetor() {
   fetch(url + "listarsetores")
     .then((x) => x.json())
@@ -536,6 +616,7 @@ function selectSetor() {
     });
 }
 
+// lista de funcionários cadastrados no bd para cadastro
 function selectFuncionario() {
   fetch(url + "listarfuncionarios")
     .then((x) => x.json())
@@ -549,6 +630,22 @@ function selectFuncionario() {
       }
     });
 }
+
+
+// lista todas as folhas de pagamento cadastradas no sistema
+$("#listarFolhas").click(function () {
+  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
+  <h1>Listar folhas de pagamento</h1>
+  <p>Clique no botão abaixo para gerar a lista com todas as folhas de pagamento cadastradas no sistema</p>
+  <div class="buttonEnviar pt-3">
+        <button type="button" class="btn btn-primary mb-3" onclick="listarFolhas()">Listar Folhas
+        </button>
+  </div>
+     <div id="listar-folhas"></div>
+  </div>
+  `);
+});
+
 
 function listarFolhas() {
   fetch(url + "listarfolha")
@@ -593,7 +690,7 @@ function listarFolhas() {
 
         let divSalario = document.createElement("input");
         divSalario.placeholder = "";
-        divSalario.value = folha.salario;
+        divSalario.value = "$" + folha.salario;
         divFolha.appendChild(divSalario);
 
         let btnRemover = document.createElement("button");
@@ -610,6 +707,7 @@ function listarFolhas() {
     });
 }
 
+// remove folha do sistema
 function removerFolha(id) {
   fetch(url + "deletarfolha/" + id, {
     method: "POST",
@@ -635,19 +733,9 @@ function removerFolha(id) {
     });
 }
 
-$("#listarFolhas").click(function () {
-  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
-  <h1>Listar folhas de pagamento</h1>
-  <p>Clique no botão abaixo para gerar a lista com todas as folhas de pagamento cadastradas no sistema</p>
-  <div class="buttonEnviar pt-3">
-        <button type="button" class="btn btn-primary mb-3" onclick="listarFolhas()">Listar Folhas
-        </button>
-  </div>
-     <div id="listar-folhas"></div>
-  </div>
-  `);
-});
 
+
+// lista folha específica por id gerado
 $("#listarFolhaId").click(function () {
   $(".view-content").html(`<div class="view-content-teste">
   <div>
@@ -674,7 +762,7 @@ function listarFolhaId() {
 
       let listarFolha = document.getElementById("listar-folha-id");
       let divFolhaId = document.createElement("div");
-
+      
       let idFolha = document.createElement("input");
       idFolha.value = folha.id;
       divFolhaId.appendChild(idFolha);
@@ -684,24 +772,86 @@ function listarFolhaId() {
       divFolhaId.appendChild(diastrabalhados);
 
       let salario = document.createElement("input");
-      salario.value = folha.salario;
+      salario.value = "$" + folha.salario;
       divFolhaId.appendChild(salario);
 
       listarFolha.appendChild(divFolhaId);
     });
 }
 
-//Funções de validação
-function validaNoome() {
-  let nomeFunc = document.getElementById("nome-funcionario").value;
-  if (nomeFunc == "") {
-    alert("É obrigatório preencher o nome");
-  }
-}
 
-function validaCpf() {
-  let cpfFunc = document.getElementById("cpf-funcionario").value;
-  if (cpfFunc == "") {
-    alert("É obrigatório preencher o CPF");
-  }
+
+
+
+// lista folhas de pagamento com salarios maiores do que o usário escolher
+$("#listarFolhaSalarioMaior").click(function () {
+  $(".view-content").html(`<div class="view-content-teste">
+  <div>
+  <label>Insira um valor para retornar as folhas com salarios maiores</label>
+  <input id="id-folha-salario"> </input>
+  </div>
+  <div class="buttonEnviar pt-3">
+        <button type="button" class="btn btn-primary" onclick="listarFolhaSalario()">Listar Folha
+        </button>
+  </div>
+     <div id="listar-folha-salario"></div>
+  </div>
+  `);
+});
+
+function listarFolhaSalario() {
+  var idFolhaSalario = document.getElementById("id-folha-salario").value;
+  console.log(idFolhaSalario); //aqui está o id que que vai retornar o item que eu quero
+
+  fetch(url + "salariomaior/" + idFolhaSalario)
+    .then((x) => x.json())
+    .then((folhas) => {
+      console.log(folhas);
+
+      let listaFolhas = document.getElementById("listar-folha-salario");
+
+      for (let folha of folhas) {
+        let divFolha = document.createElement("div");
+        let containerLabels = document.createElement("div");
+        containerLabels.className = "containerLabels";
+
+        let divIdFolha = document.createElement("div");
+        let labelIdFolha = document.createElement("label");
+        labelIdFolha.innerHTML = "ID da folha";
+        divIdFolha.appendChild(labelIdFolha);
+        containerLabels.appendChild(divIdFolha);
+
+        let divDiasT = document.createElement("div");
+        let labelDiasT = document.createElement("label");
+        labelDiasT.innerHTML = "Dias trabalhados";
+        divDiasT.appendChild(labelDiasT);
+        containerLabels.appendChild(divDiasT);
+
+        let divLabelSalario = document.createElement("div");
+        let labelSalario = document.createElement("label");
+        labelSalario.innerHTML = "Salario";
+        divLabelSalario.appendChild(labelSalario);
+        containerLabels.appendChild(divLabelSalario);
+
+        divFolha.appendChild(containerLabels);
+
+        let idFolha = document.createElement("input");
+        idFolha.placeholder = "Dias trabalhados no mês";
+        idFolha.value = folha.id;
+        divFolha.appendChild(idFolha);
+
+        let divDiastrabalhados = document.createElement("input");
+        divDiastrabalhados.placeholder = "Dias trabalhados no mês";
+        divDiastrabalhados.value = folha.diasTrabalhados;
+        divFolha.appendChild(divDiastrabalhados);
+
+        let divSalario = document.createElement("input");
+        divSalario.placeholder = "";
+        divSalario.value = "$" + folha.salario;
+        divFolha.appendChild(divSalario);
+
+        listaFolhas.appendChild(divFolha);
+      }
+    });
 }
+// fim do projeto

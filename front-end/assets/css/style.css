@@ -304,3 +304,8 @@ select {
   position: relative;
   left: 157px;
 }
+
+.erro-input
+{
+	color:red;
+}
