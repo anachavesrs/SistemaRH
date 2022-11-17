@@ -324,10 +324,39 @@ select {
   text-align: center;
 }
 
+#listar-folha-id input{
+  height: 35px;
+  border-radius: 10px;
+  border: solid 1px;
+  text-align: center;
+}
+
+
+#id-folha-salario {
+  height: 35px;
+  border-radius: 10px;
+  border: solid 1px;
+  text-align: center;
+}
+
+#id-folha-unica{
+  height: 35px;
+  border-radius: 10px;
+  border: solid 1px;
+  text-align: center;
+}
+
 
 .containerLabels2 {
   display: flex;
   gap: 6rem;
   position: relative;
-  left: 75px;
+  left: 150px;
+}
+
+.containerLabels3 {
+  display: flex;
+  gap: 6rem;
+  position: relative;
+  left: 150px;
 }

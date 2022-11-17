@@ -41,7 +41,7 @@ $("#cadastroFuncionario").click(function () {
           </select>
         </div>
           <div class="buttonEnviar pt-3">
-            <button type="button" class="btn btn-primary" onclick="cadastrarFunci()" id="cadastrarFuncionario">Enviar
+            <button type="button" class="btn btn-primary" onclick="cadastrarFunci() id="buttonCadastrarFunci" id="cadastrarFuncionario">Enviar
             </button>
             <div id="valida">
             </div>
@@ -96,13 +96,13 @@ function cadastrarFunci() {
 
 function validaNoome() {
   let nomeFunc = document.getElementById("nome-funcionario").value;
+  // let buttonCondicao = getElementById("buttonCadastrarFunci")
   if (nomeFunc == "") {
   let divErro = document.getElementById("valida")
   let pErro = document.createElement("p")
   pErro.innerHTML = "O campo nome não pode estar vazio"
   pErro.className = "erro-input";
-
-
+  // buttonCondicao.setAttribute("disabled")
   divErro.appendChild(pErro)
   }
  }
@@ -736,11 +736,10 @@ function removerFolha(id) {
 
 // lista folha específica por id gerado
 $("#listarFolhaId").click(function () {
-  $(".view-content").html(`<div class="view-content-teste">
-  <div>
-  <label>Insira abaixo a chave de folha gerada no cadastro</label>
-  <input id="id-folha"> </input>
-  </div>
+  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
+  <h1>Listar folha por ID gerado</h1>
+  <p>Insira o ID gerado no campo abaixo para achar a folha de pagamento que deseja.</p>
+  <input id="id-folha-unica"> </input>
   <div class="buttonEnviar pt-3">
         <button type="button" class="btn btn-primary" onclick="listarFolhaId()">Listar Folha
         </button>
@@ -751,7 +750,7 @@ $("#listarFolhaId").click(function () {
 });
 
 function listarFolhaId() {
-  var idFolha = document.getElementById("id-folha").value;
+  var idFolha = document.getElementById("id-folha-unica").value;
   console.log(idFolha); //aqui está o id que que vai retornar o item que eu quero
 
   fetch(url + "listarfolhaid/" + idFolha)
@@ -760,11 +759,10 @@ function listarFolhaId() {
       console.log(folha);
 
       let listarFolha = document.getElementById("listar-folha-id");
-      let divFolhaId = document.createElement("div");
       
         let divFolha = document.createElement("div");
         let containerLabels = document.createElement("div");
-        containerLabels.className = "containerLabels2";
+        containerLabels.className = "containerLabels3";
 
         let divIdFolha = document.createElement("div");
         let labelIdFolha = document.createElement("label");
@@ -801,7 +799,7 @@ function listarFolhaId() {
         divSalario.value = "$" + folha.salario;
         divFolha.appendChild(divSalario);
 
-        listaFolhas.appendChild(divFolha);
+        listarFolha.appendChild(divFolha);
       
      
     });
@@ -813,11 +811,11 @@ function listarFolhaId() {
 
 // lista folhas de pagamento com salarios maiores do que o usário escolher
 $("#listarFolhaSalarioMaior").click(function () {
-  $(".view-content").html(`<div class="view-content-teste">
-  <div>
-  <label>Insira um valor para retornar as folhas com salarios maiores</label>
+  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
+  <h1>Listar por salário maior que:</h1>
+  <p>Insira no campo abaixo um valor para listar as folhas de pagamento que tem o salario maior que o valor informado!</p>
   <input id="id-folha-salario"> </input>
-  </div>
+  
   <div class="buttonEnviar pt-3">
         <button type="button" class="btn btn-primary" onclick="listarFolhaSalario()">Listar Folha
         </button>
