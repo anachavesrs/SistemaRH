@@ -569,7 +569,7 @@ function cadastrarFolha() {
     .then((output) => {
       console.log(output);
       alert(
-        "Cadastro efetuado! Guarde o ID da folha gerado pois só com ele será possível acessar a folha!!!"
+        "Cadastro efetuado!"
       );
     })
 
@@ -735,11 +735,11 @@ function removerFolha(id) {
     .then((output) => {
       listarFolhas();
       console.log(output);
-      alert("Setor removido!");
+      alert("Folha removida!");
     })
     .catch((error) => {
       console.log(error);
-      alert("Não foi possível remover o setor");
+      alert("Não foi possível remover a folha");
     });
 }
 
