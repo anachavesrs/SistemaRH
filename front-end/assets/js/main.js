@@ -892,7 +892,7 @@ $("#listarFolhaFunci").click(function () {
   </select>
   </div>
   
-  <div class="buttonEnviar pt-3">
+  <div class="buttonEnviar pt-3" id="teste1">
         <button type="button" class="btn btn-primary" onclick="listaFolhaDofuncionario()">Listar Folha
         </button>
   </div>
@@ -904,6 +904,9 @@ $("#listarFolhaFunci").click(function () {
 });
 
 function listaFolhaDofuncionario() {
+  let divTeste = document.getElementById("teste1")
+
+  divTeste.classList.add("classeTeste")
   let selecfunciFolha = document.getElementById("nome-folha-f");
   let idFuncionario = selecfunciFolha.options[selecfunciFolha.selectedIndex].value
 console.log(idFuncionario)
