@@ -917,6 +917,15 @@ $("#listarFolhaFunci").click(function () {
   </div>
      <div id="listar-folha-funcionario">
      </div>
+     <div class="buttonEnviar pt-3 classeTeste" id="btn-display-none">
+        <button type="button" class="btn btn-primary" onclick="imprimirFolha()">Imprimir Folha
+        </button>
+  </div>
+  <div id="print" class="conteudo classeTeste">
+      <h1>Folha de pagamento
+      </h1>
+  </div>
+
   </div^>
   `)
   listaFuncionarioFolha();
@@ -928,6 +937,7 @@ function listaFolhaDofuncionario() {
   divTeste.classList.add("classeTeste")
   let selecfunciFolha = document.getElementById("nome-folha-f");
   let idFuncionario = selecfunciFolha.options[selecfunciFolha.selectedIndex].value
+
 console.log(idFuncionario)
 
   fetch(url + "listarFolhaFuncionario/" + idFuncionario)
@@ -977,8 +987,27 @@ console.log(idFuncionario)
         divFolha.appendChild(divSalario);
 
         listaFolhas.appendChild(divFolha);
+
+        // let divLayoutFolha = document.getElementById("print")
+        // divLayoutFolha.className.remove("classeTeste")
+        // let cabecaFolha = document.createElement("h1")
+        // cabecaFolha.innerHTML = "Folha de Pagamento RH Sistema"
+        // divLayoutFolha.appendChild(cabecaFolha)
+
       
     });
+
+    let divBtnNone = document.getElementById("btn-display-none")
+    divBtnNone.classList.remove("classeTeste")
+}
+
+
+function imprimirFolha(){
+  let conteudo = document.getElementById('print').innerHTML,
+  tela_impressao = window.open('about:blank');
+  tela_impressao.document.write(conteudo);
+  tela_impressao.window.print();
+  tela_impressao.window.close();
 }
 
 
