@@ -297,7 +297,7 @@ $("#cadastroSetor").click(function () {
           <input id="nome-setor" type="text" placeholder="Insira o setor aqui" onblur="validaNomeSetor()">
           <input id="valor-dia" type="number" placeholder="Insira o valor que o setor paga por dia aqui" onblur="validaValorSetor()" >
         </div>
-          <div class="buttonEnviar pt-3">
+          <div class="buttonEnviar pt-3" id="btn-display-setor">
             <button type="button" class="btn btn-primary" onclick="cadastrarSetor()" id="cadastrarSetor">Cadastrar
             </button>
           </div>
@@ -334,6 +334,10 @@ function validaNomeSetor() {
 
 // função que lista os setores do sistema
 function listarSetores() {
+  // let divDisplay = document.getElementById("btn-display-setor")
+
+  // divDisplay.classList.add("classeTeste")
+
   fetch(url + "listarsetores")
     .then((response) => response.json())
     .then((setores) => {
@@ -396,6 +400,7 @@ function listarSetores() {
 }
 
 function atualizarSetor(id, divNomeSetor, divValorDia) {
+
   let setor = {
     nome: divNomeSetor.value,
     valorDiaTrabalho: divValorDia.value,
@@ -637,7 +642,7 @@ $("#listarFolhas").click(function () {
   $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
   <h1>Listar folhas de pagamento</h1>
   <p>Clique no botão abaixo para gerar a lista com todas as folhas de pagamento cadastradas no sistema</p>
-  <div class="buttonEnviar pt-3">
+  <div class="buttonEnviar pt-3" id="btn-display-lista">
         <button type="button" class="btn btn-primary mb-3" onclick="listarFolhas()">Listar Folhas
         </button>
   </div>
@@ -648,6 +653,11 @@ $("#listarFolhas").click(function () {
 
 
 function listarFolhas() {
+  let divDisplay = document.getElementById("btn-display-lista")
+
+  divDisplay.classList.add("classeTeste")
+
+  
   fetch(url + "listarfolha")
     .then((response) => response.json())
     .then((folhas) => {
@@ -741,7 +751,7 @@ $("#listarFolhaId").click(function () {
   <h1>Listar folha por ID gerado</h1>
   <p>Insira o ID gerado no campo abaixo para achar a folha de pagamento que deseja.</p>
   <input id="id-folha-unica"> </input>
-  <div class="buttonEnviar pt-3">
+  <div class="buttonEnviar pt-3" id="btn-display-id">
         <button type="button" class="btn btn-primary" onclick="listarFolhaId()">Listar Folha
         </button>
   </div>
@@ -751,6 +761,10 @@ $("#listarFolhaId").click(function () {
 });
 
 function listarFolhaId() {
+
+  let divDisplay = document.getElementById("btn-display-id")
+
+  divDisplay.classList.add("classeTeste")
   var idFolha = document.getElementById("id-folha-unica").value;
   console.log(idFolha); //aqui está o id que que vai retornar o item que eu quero
 
@@ -813,7 +827,7 @@ $("#listarFolhaSalarioMaior").click(function () {
   <p>Insira no campo abaixo um valor para listar as folhas de pagamento que tem o salario maior que o valor informado!</p>
   <input id="id-folha-salario"> </input>
   
-  <div class="buttonEnviar pt-3">
+  <div class="buttonEnviar pt-3" id="btn-display">
         <button type="button" class="btn btn-primary" onclick="listarFolhaSalario()">Listar Folha
         </button>
   </div>
@@ -823,6 +837,11 @@ $("#listarFolhaSalarioMaior").click(function () {
 });
 
 function listarFolhaSalario() {
+
+  let divDisplay = document.getElementById("btn-display")
+
+  divDisplay.classList.add("classeTeste")
+
   var idFolhaSalario = document.getElementById("id-folha-salario").value;
   console.log(idFolhaSalario); //aqui está o id que que vai retornar o item que eu quero
 
