@@ -248,6 +248,8 @@ function remover(id) {
 // CRUD SETOR / CONEXÃO
 function cadastrarSetor() {
 
+  
+
   let setor = {
     nome: document.getElementById("nome-setor").value,
     valorDiaTrabalho: document.getElementById("valor-dia").value,
@@ -495,6 +497,7 @@ $("#cadastroFolha").click(function () {
 
       <div>
       <label for="text">Selecione o funcionario</label>
+
       <select id="select-funcionario">
       </select>
       </div>
@@ -803,10 +806,6 @@ function listarFolhaId() {
     });
 }
 
-
-
-
-
 // lista folhas de pagamento com salarios maiores do que o usário escolher
 $("#listarFolhaSalarioMaior").click(function () {
   $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
@@ -878,4 +877,130 @@ function listarFolhaSalario() {
       }
     });
 }
+
+
+
+
+// lista folhas de pagamento por funcionário
+$("#listarFolhaFunci").click(function () {
+  $(".view-content").html(`<div class="view-content-teste listar-funcionarios">
+  <h1>Listar folha de pagamento por funcionário:</h1>
+  <p>Selecione na lista abaixo o funcionário para retornar a sua folha de pagamento</p>
+  <div>
+  <select id="nome-folha-f">
+
+  </select>
+  </div>
+  
+  <div class="buttonEnviar pt-3">
+        <button type="button" class="btn btn-primary" onclick="listaFolhaDofuncionario()">Listar Folha
+        </button>
+  </div>
+     <div id="listar-folha-funcionario">
+     </div>
+  </div^>
+  `)
+  listaFuncionarioFolha();
+});
+
+function listaFolhaDofuncionario() {
+  let selecfunciFolha = document.getElementById("nome-folha-f");
+  let idFuncionario = selecfunciFolha.options[selecfunciFolha.selectedIndex].value
+console.log(idFuncionario)
+
+  fetch(url + "listarFolhaFuncionario/" + idFuncionario)
+    .then((x) => x.json())
+    .then((folha) => {
+      console.log(folha);
+
+      let listaFolhas = document.getElementById("listar-folha-funcionario");
+
+        let divFolha = document.createElement("div");
+        let containerLabels = document.createElement("div");
+        containerLabels.className = "containerLabels2";
+
+        let divIdFolha = document.createElement("div");
+        let labelIdFolha = document.createElement("label");
+        labelIdFolha.innerHTML = "ID da folha";
+        divIdFolha.appendChild(labelIdFolha);
+        containerLabels.appendChild(divIdFolha);
+
+        let divDiasT = document.createElement("div");
+        let labelDiasT = document.createElement("label");
+        labelDiasT.innerHTML = "Dias trabalhados";
+        divDiasT.appendChild(labelDiasT);
+        containerLabels.appendChild(divDiasT);
+
+        let divLabelSalario = document.createElement("div");
+        let labelSalario = document.createElement("label");
+        labelSalario.innerHTML = "Salario";
+        divLabelSalario.appendChild(labelSalario);
+        containerLabels.appendChild(divLabelSalario);
+
+        divFolha.appendChild(containerLabels);
+
+        let idFolha = document.createElement("input");
+        idFolha.placeholder = "Dias trabalhados no mês";
+        idFolha.value = folha.id;
+        divFolha.appendChild(idFolha);
+
+        let divDiastrabalhados = document.createElement("input");
+        divDiastrabalhados.placeholder = "Dias trabalhados no mês";
+        divDiastrabalhados.value = folha.diasTrabalhados;
+        divFolha.appendChild(divDiastrabalhados);
+
+        let divSalario = document.createElement("input");
+        divSalario.placeholder = "";
+        divSalario.value = "$" + folha.salario;
+        divFolha.appendChild(divSalario);
+
+        listaFolhas.appendChild(divFolha);
+      
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+// lista de funcionários cadastrados no bd para cadastro
+function listaFuncionarioFolha() {
+  fetch(url + "listarfuncionarios")
+    .then((y) => y.json())
+    .then((funcionarios) => {
+
+      console.log(funcionarios)
+
+       let divfuncionario2 = document.getElementById("nome-folha-f");
+      for (let f of funcionarios) {
+        let optionFuncionario2 = document.createElement("option");
+        optionFuncionario2.value = f.id;
+        optionFuncionario2.innerHTML = f.nome
+        divfuncionario2.appendChild(optionFuncionario2)
+      }
+    });
+}
+
+
+
+
+
+// let selecfunci = document.getElementById("select-funcionario");
+
+//   let folha = {
+//     id: document.getElementById("id-folha-random").value,
+//     idSetor: selectsetor.options[selectsetor.selectedIndex].value,
+//     idFuncionario: selecfunci.options[selecfunci.selectedIndex].value,
+//     diasTrabalhados: document.getElementById("dias-trabalhados").value,
+//   };
+
+
+
+
 // fim do projeto

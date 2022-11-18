@@ -330,7 +330,12 @@ select {
   border: solid 1px;
   text-align: center;
 }
-
+#listar-folha-funcionario input{
+  height: 35px;
+  border-radius: 10px;
+  border: solid 1px;
+  text-align: center;
+}
 
 #id-folha-salario {
   height: 35px;
