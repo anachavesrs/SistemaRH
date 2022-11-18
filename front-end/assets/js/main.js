@@ -924,6 +924,9 @@ $("#listarFolhaFunci").click(function () {
   <div id="print" class="conteudo classeTeste">
       <h1>Folha de pagamento
       </h1>
+      <div id="povoaJs">
+
+      </div>
   </div>
 
   </div^>
@@ -937,7 +940,10 @@ function listaFolhaDofuncionario() {
   divTeste.classList.add("classeTeste")
   let selecfunciFolha = document.getElementById("nome-folha-f");
   let idFuncionario = selecfunciFolha.options[selecfunciFolha.selectedIndex].value
-
+  let NomeFuncionario = selecfunciFolha.options[selecfunciFolha.selectedIndex].innerHTML
+  
+ 
+console.log(NomeFuncionario)
 console.log(idFuncionario)
 
   fetch(url + "listarFolhaFuncionario/" + idFuncionario)
@@ -988,14 +994,28 @@ console.log(idFuncionario)
 
         listaFolhas.appendChild(divFolha);
 
-        // let divLayoutFolha = document.getElementById("print")
-        // divLayoutFolha.className.remove("classeTeste")
-        // let cabecaFolha = document.createElement("h1")
-        // cabecaFolha.innerHTML = "Folha de Pagamento RH Sistema"
-        // divLayoutFolha.appendChild(cabecaFolha)
+        let divLayoutFolha = document.getElementById("povoaJs")
 
+        let cabecaFolha = document.createElement("h3")
+        cabecaFolha.innerHTML = "Abaixo, segue todas as informações sobre o salário do mês."
+        divLayoutFolha.appendChild(cabecaFolha)
+
+        let cabecaFolha2 = document.createElement("h2")
+        let salarioMes = folha.salario
+        let diasTrabalhados = folha.diasTrabalhados
+        cabecaFolha2.innerHTML = 
+        "*Nome: " + NomeFuncionario + 
+        " *Salário do mês: "+"$"+ salarioMes + 
+        " *Dias trabalhados: "+ diasTrabalhados 
+        divLayoutFolha.appendChild(cabecaFolha2)
+
+        let cabecaFolha3 = document.createElement("p")
+        cabecaFolha3.innerHTML = "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker."
+        divLayoutFolha.appendChild(cabecaFolha3)
       
     });
+
+        
 
     let divBtnNone = document.getElementById("btn-display-none")
     divBtnNone.classList.remove("classeTeste")
