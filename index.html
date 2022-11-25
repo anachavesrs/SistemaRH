@@ -155,37 +155,36 @@
 					alert("É obrigatório selecionar um gênero")
 					
 				} else {
-					console.log("Ok")
+					
 				} if (formNome && formNascimento  && formGenero != "" || null) {
 					alert("Bem vindo! " + novoNome[0] + " você tem " + dataNascimento2 + " anos, e é do sexo " + formGenero)
-					console.log("aaa")
+					
 				}
 				var url1 = "https://date.nager.at/api/v3/PublicHolidays/2022/BR"
-				fetch(url1, {
-					method: "POST",
-					redirect: "follow",
-					headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-					},
-					body: JSON.stringify(),
-				})
-					.then((response) => {
-					if (response.ok) {
-						return response.text();
-					} else {
-						return response.text().then((text) => {
-						throw new Error(text);
-						});
-					}
-					})
-					console.log()
+
+				fetch(url1)
+				.then(response => response.json())
+				.then((output) =>
+				{
 					
 
-				$("#resposta")
+					var removeArray = output.splice(12);
 
-
-
+					console.log(output)
+					
+					let feriadosJson = output.map(function(feriado){
+						
+						
+					
+						
+					 $("#resposta").html(`
+						<h1>O feriado mais próximo da data de acesso é:</p>
+					<p>${feriado.localName}</p>
+				`);
+				})
+				})
+				.catch(error => console.log(error))
+					
 			}
 
 		</script>
