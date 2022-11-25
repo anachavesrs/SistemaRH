@@ -1,0 +1,195 @@
+<!--
+	Curitiba, Novembro de 2022
+	Universidade Positivo
+	Desenvolvimento de Software Visual
+	Prof Jean Diogo
+	
+	PROVA 2
+	
+	Analise o codigo abaixo e implemente a funcao "cadastrar" conforme as instrucoes comentadas no interior dela
+	Voce pode adicionar codigo javascript a vontade, mas nao deve mexer no html e no css
+	Por favor avise o professor caso algum dos links informados nao esteja funcionando
+	
+	A prova deve ser submetida no blackboard ate o final da aula
+	Apenas este arquivo precisa ser submetido (mas se quiser submeter mais arquivos favor compactar tudo)
+	
+	A prova eh indivual, presencial e deve ser realizada dentro do horario da aula
+	Voce pode realizar a prova no seu proprio computador ou em um dos computadores da sala
+	Eh permitida consulta a internet e ao material de aula, mas nao eh permitida comunicacao com colegas nem uso de celular
+	Plagio e cola implicarao na anulacao da nota dos alunos e alunas envolvidos
+	Voce pode sair para ir ao banheiro ou a cantina, mas caso algum ou alguma colega ja tenha ido, espere ele ou ela voltar
+	
+	A interpretacao do codigo faz parte da avaliacao, mas caso tenha algum problema levante a mao que o professor ira ateh sua carteira
+	Nao desanime se nao souber fazer tudo, as questoes serao parcialmente pontuadas conforme o que voce conseguir fazer
+	Boa prova!
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<title>Prova 2 de Programação Visual</title>
+		<style>
+			* {
+				font-family: "Verdana", sans-serif;
+			}
+			.form {
+				border-radius: 4px;
+				box-shadow: 0 0 1px 0;
+				margin: 20px;
+				max-width: 400px;
+				padding: 20px 20px 0 20px;
+
+			}
+			.form * {
+				border: 0;
+				border-radius: 4px;
+				font-size: 16px;
+				margin-bottom: 20px;
+				outline: 0;
+				padding: 20px;
+				width: 100%;
+			}
+			.form button {
+				background: #4d4ddd;
+				color: #ffffff;
+				cursor: pointer;
+			}
+			.form button:active {
+				background: #0066cc;
+			}
+			.form img {
+				padding: 0;
+			}
+			.form input {
+				background: #e0e0e0;
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="display:flex;">
+			<div class="form">
+				<input id="nome" placeholder="Nome Completo" type="text"/>
+				<input id="nascimento" type="date"/>
+				<select id="genero">
+					<option disabled selected>Gênero</option>
+					<option value="feminino">Feminino</option>
+					<option value="masculino">Masculino</option>
+					<option value="nao-binario">Não-binário</option>
+				</select>
+				<button onclick="cadastrar()">Cadastrar</button>
+			</div>
+			<div id="resposta" class="form"></div>
+		</div>
+		<script>
+			function cadastrar()
+			{
+				console.log("teste")
+				/*
+					INSTRUCOES
+					
+					primeiramente voce deve:
+					
+					(0.1) verificar se foi informado pelo menos um nome e um sobrenome
+					(0.1) verificar se foi selecionada uma data
+					(0.1) verificar se foi selecionado um genero
+					
+					caso algum campo nao tenha sido preenchido
+					
+					(0.3) exibir um alerta informando todos os campos que nao foram preenchidos e interromper cadastro
+					
+					caso contrario, exibir um alerta com um texto de boas vindas. o texto deve:
+					
+			 		(0.2) usar a flexao de genero apropriada (a/o/e)
+					(0.2) mencionar apenas o primeiro nome da pessoa
+					(0.5) informar a idade da pessoa
+					(0.5) informar o numero de consoantes que o nome completo dela possui
+					   
+					      por exemplo
+                          se os dados forem "Luiz da Silva", "masculino" e "1945-10-27"
+					      o texto deve ser "Bem vindo, Luiz! Você tem 77 anos e seu nome completo possui 6 consoantes."
+					
+					em seguida voce deve inserir na div "resposta" os seguintes elementos:
+					
+					(1.4) um heading contendo o nome do ultimo feriado ocorrido
+					      o nome do feriado deve ser extraido do json retornado atraves de um get em https://date.nager.at/api/v3/PublicHolidays/2022/BR
+					      a data de referencia deve ser o dia em que o usuario esta acessando o site
+					      
+					(0.2) abaixo do heading, uma image do animal do dia
+					      a url da imagem deve ser extraida do json retornado atraves de um get em https://zoo-animal-api.herokuapp.com/animals/rand
+					
+					(0.4) abaixo da image, um span contendo uma frase motivacional
+					      a frase deve ser extraida do json retornado atraves de um get em https://api.adviceslip.com/advice
+					      a frase deve ser colocada em estilo italico
+				*/
+				var formNome = document.getElementById("nome").value
+				
+				var formNascimento = document.getElementById("nascimento").value
+				
+				var formGenero = document.getElementById("genero").value
+				
+				if (formNome == "" || null) {
+					alert("É obrigatório preencher o nome")
+				} else {
+					var novoNome = formNome.split(" ")
+					console.log(novoNome)
+					
+				}
+				if (formNascimento == "" || null) {
+					
+					alert("É obrigatório preencher a data de nascimento")
+				} else {
+					//var dataNascimento = parseInt(formNascimento.replaceAll("-", ""))
+					var dataNascimento = formNascimento.split("-")
+					console.log(dataNascimento)
+					var ano_atual = new Date().getFullYear();
+					console.log(ano_atual)
+					var dataNascimento2 = ano_atual - dataNascimento[0]
+					console.log(dataNascimento2)
+				}
+
+				if (formGenero == "Gênero") {
+					alert("É obrigatório selecionar um gênero")
+					
+				} else {
+					console.log("Ok")
+				} if (formNome && formNascimento  && formGenero != "" || null) {
+					alert("Bem vindo! " + novoNome[0] + " você tem " + dataNascimento2 + " anos, e é do sexo " + formGenero)
+					console.log("aaa")
+				}
+				var url1 = "https://date.nager.at/api/v3/PublicHolidays/2022/BR"
+				fetch(url1, {
+					method: "POST",
+					redirect: "follow",
+					headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+					},
+					body: JSON.stringify(),
+				})
+					.then((response) => {
+					if (response.ok) {
+						return response.text();
+					} else {
+						return response.text().then((text) => {
+						throw new Error(text);
+						});
+					}
+					})
+					console.log()
+					
+
+				$("#resposta")
+
+
+
+			}
+
+		</script>
+		
+	</body>
+</html>
+
